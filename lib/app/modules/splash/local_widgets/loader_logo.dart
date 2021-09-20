@@ -16,7 +16,7 @@ class LoaderLogo extends StatelessWidget {
         Container(
           decoration: const BoxDecoration(
               gradient: LinearGradient(
-            colors: [AppColors.primaryColor, AppColors.darkColor],
+            colors: [AppColors.primaryColor, Colors.white],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             stops: [0.3, 0.7],
