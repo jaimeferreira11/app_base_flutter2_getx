@@ -16,7 +16,7 @@ class LoaderLogo extends StatelessWidget {
         Container(
           decoration: const BoxDecoration(
               gradient: LinearGradient(
-            colors: [AppColors.primaryColor, Colors.white],
+            colors: [AppColors.primaryColor, AppColors.darkColor],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             stops: [0.3, 0.7],
@@ -34,14 +34,9 @@ class LoaderLogo extends StatelessWidget {
                   ),
                   ZoomIn(
                       delay: const Duration(milliseconds: 800),
-                      child: Hero(
+                      child: const Hero(
                         tag: 'login',
-                        child: Image(
-                          height: responsive.hp(15),
-                          image: const AssetImage(
-                            'assets/images/logo_blanco.png',
-                          ),
-                        ),
+                        child:  FlutterLogo(size: 200),
                       )),
                   SizedBox(
                     height: responsive.hp(2),
@@ -50,7 +45,7 @@ class LoaderLogo extends StatelessWidget {
                       delay: const Duration(milliseconds: 800),
                       child: Center(
                         child: Text(
-                          'Aliados',
+                          '',
                           style: AppFonts.primaryFont.copyWith(
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
@@ -67,17 +62,17 @@ class LoaderLogo extends StatelessWidget {
                   const Spacer(
                     flex: 4,
                   ),
-                  BounceInUp(
-                      delay: const Duration(milliseconds: 1000),
-                      child: Container(
-                        margin: EdgeInsets.only(bottom: responsive.hp(1)),
-                        child: Image(
-                          height: responsive.hp(7),
-                          image: const AssetImage(
-                            'assets/images/logo_fp_blanco.png',
-                          ),
-                        ),
-                      )),
+                  // BounceInUp(
+                  //     delay: const Duration(milliseconds: 1000),
+                  //     child: Container(
+                  //       margin: EdgeInsets.only(bottom: responsive.hp(1)),
+                  //       child: Image(
+                  //         height: responsive.hp(7),
+                  //         image: const AssetImage(
+                  //           'assets/images/logo_fp_blanco.png',
+                  //         ),
+                  //       ),
+                  //     )),
                 ],
               ),
             ),

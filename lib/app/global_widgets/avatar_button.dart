@@ -52,7 +52,7 @@ class AvatarButton extends StatelessWidget {
                           ),
                         ),
                         errorWidget: (context, url, error) =>
-                            Image.asset('assets/images/no-image.png'),
+                            Image.asset('assets/images/no-image.jpg'),
                         width: imageSize,
                         height: imageSize,
                         fit: BoxFit.cover,

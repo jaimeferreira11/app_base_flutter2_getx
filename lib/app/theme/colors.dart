@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primaryColor = Color(0xffef9f24); //0xff1e7d3e
-  static const secondaryColor = Color(0xffaec437);
-  static const darkColor = Color(0xff166130);
+  static const primaryColor = Colors.blue; //0xff1e7d3e
+  static const secondaryColor = Colors.blueGrey;
+  static const darkColor = Colors.blueAccent;
   static const accentColor = Color(0xffef9f24);
   static const linkColor = Colors.blue;
   static const textColor = Color(0xff646464);

@@ -1,10 +1,8 @@
-import 'package:app_base_flutter2_getx/app/data/providers/local/cache.dart';
 import 'package:app_base_flutter2_getx/app/data/repositories/local/auth_repository.dart';
 import 'package:app_base_flutter2_getx/app/data/repositories/remote/server_repository.dart';
 import 'package:app_base_flutter2_getx/app/routes/app_routes.dart';
 import 'package:app_base_flutter2_getx/app/routes/navigator.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/route_manager.dart';
+
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -19,6 +17,7 @@ class SplashController extends GetxController {
   }
 
   _init() async {
+    Future.delayed(const Duration(seconds: 2), () => nav.goToOff(AppRoutes.login));
     // final resp = await serverRepo.getVersion();
 
     // resp.fold((l) => verificarSesion(), (r) async {
@@ -44,7 +43,7 @@ class SplashController extends GetxController {
       (l) => Future.delayed(
         Duration(seconds: 2),
         () {
-          nav.goToOff(AppRoutes.LOGIN);
+          nav.goToOff(AppRoutes.login);
         },
       ),
       (r) => Future.delayed(

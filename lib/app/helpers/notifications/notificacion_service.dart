@@ -32,13 +32,13 @@ class NotificationService {
         duration: const Duration(
           milliseconds: 3000,
         ),
-        icon: (color == NotiKey.SUCCESS)
+        icon: (color == NotiKey.success)
             ? const Icon(FontAwesomeIcons.checkCircle)
-            : (color == NotiKey.ERROR)
+            : (color == NotiKey.error)
                 ? const Icon(FontAwesomeIcons.timesCircle)
-                : (color == NotiKey.INFO)
+                : (color == NotiKey.info)
                     ? const Icon(FontAwesomeIcons.infoCircle)
-                    : (color == NotiKey.WARNING)
+                    : (color == NotiKey.warning)
                         ? const Icon(FontAwesomeIcons.exclamationTriangle)
                         : null);
   }
@@ -62,7 +62,7 @@ class NotificationService {
           ),
         ),
         colorText: Colors.white,
-        backgroundColor: coloresSnack[NotiKey.ERROR],
+        backgroundColor: coloresSnack[NotiKey.error],
         duration: const Duration(
           milliseconds: 2500,
         ),
@@ -75,7 +75,7 @@ class NotificationService {
   void mostrarSuccess(
       {String titulo = "Proceso exitoso",
       required String mensaje,
-      SnackPosition position = SnackPosition.TOP}) {
+      SnackPosition position = SnackPosition.BOTTOM}) {
     Get.snackbar('', '',
         snackPosition: position,
         titleText: Text(
@@ -93,7 +93,7 @@ class NotificationService {
           ),
         ),
         colorText: Colors.white,
-        backgroundColor: coloresSnack[NotiKey.SUCCESS],
+        backgroundColor: coloresSnack[NotiKey.success],
         duration: const Duration(
           milliseconds: 2500,
         ),
