@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../../global_widgets/custom_appbar.dart';
@@ -11,7 +10,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey bottomNavigationKey = GlobalKey();
+    // GlobalKey bottomNavigationKey = GlobalKey();
 
     return GetBuilder<HomeController>(
         builder: (_) => SafeArea(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/colors.dart';
+
 class CustomDecorationInputs {
   static InputDecoration loginInputDecoration({
     required String hint,
@@ -23,24 +25,28 @@ class CustomDecorationInputs {
   static InputDecoration searchInputDecoration({
     required String hint,
     required IconData icon,
+    IconButton? suffixIcon,
   }) =>
       InputDecoration(
-        border: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        hintText: hint,
-        prefixIcon: Icon(
-          icon,
-          color: Colors.grey,
-        ),
-        labelStyle: TextStyle(color: Colors.grey),
-        hintStyle: TextStyle(color: Colors.grey),
-      );
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.0),
+              borderSide: const BorderSide(color: AppColors.inputColor)),
+          // enabledBorder: InputBorder.none,
+          hintText: hint,
+          prefixIcon: Icon(
+            icon,
+            color: Colors.grey,
+          ),
+          labelStyle: const TextStyle(color: Colors.grey),
+          hintStyle: const TextStyle(color: Colors.grey),
+          suffixIcon: suffixIcon);
 
   static InputDecoration formInputDecoration({
     required String hint,
     required String label,
     IconData? icon,
     InputBorder? border,
+    double? fontSize,
   }) =>
       InputDecoration(
           border: border ??
@@ -49,8 +55,8 @@ class CustomDecorationInputs {
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.indigo.withOpacity(.3))),
           hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
-          labelStyle: TextStyle(color: Colors.grey),
+          hintStyle: const TextStyle(color: Colors.grey),
+          labelStyle: TextStyle(color: Colors.grey, fontSize: fontSize),
           labelText: label,
           prefixIcon: icon == null
               ? null
@@ -69,8 +75,8 @@ class CustomDecorationInputs {
               borderSide: BorderSide(color: Colors.indigo.withOpacity(.3))),
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.indigo.withOpacity(.3))),
-          hintStyle: TextStyle(color: Colors.grey),
-          labelStyle: TextStyle(color: Colors.grey),
+          hintStyle: const TextStyle(color: Colors.grey),
+          labelStyle: const TextStyle(color: Colors.grey),
           labelText: label,
           prefixIcon: icon == null
               ? null

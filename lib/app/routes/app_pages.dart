@@ -16,7 +16,7 @@ class AppPage {
         binding: SplashBinding()),
     GetPage(
         name: AppRoutes.login,
-        page: () => LoginPage(),
+        page: () => const LoginPage(),
         binding: LoginBinding()),
     GetPage(
         name: AppRoutes.home,

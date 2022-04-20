@@ -17,7 +17,8 @@ class SplashController extends GetxController {
   }
 
   _init() async {
-    Future.delayed(const Duration(seconds: 2), () => nav.goToOff(AppRoutes.login));
+    Future.delayed(
+        const Duration(seconds: 2), () => nav.goToOff(AppRoutes.login));
     // final resp = await serverRepo.getVersion();
 
     // resp.fold((l) => verificarSesion(), (r) async {
@@ -41,13 +42,13 @@ class SplashController extends GetxController {
 
     respuesta.fold(
       (l) => Future.delayed(
-        Duration(seconds: 2),
+        const Duration(seconds: 2),
         () {
           nav.goToOff(AppRoutes.login);
         },
       ),
       (r) => Future.delayed(
-        Duration(seconds: 2),
+        const Duration(seconds: 2),
         () async {
           // final resSession = await serverRepo.verfificarSession();
           // resSession.fold((l) {

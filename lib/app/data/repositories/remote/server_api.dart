@@ -1,15 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:app_base_flutter2_getx/app/config/dio_config.dart';
 import 'package:app_base_flutter2_getx/app/config/errors/failures.dart';
 import 'package:app_base_flutter2_getx/app/data/models/token_model.dart';
 import 'package:app_base_flutter2_getx/app/data/providers/local/cache.dart';
 import 'package:dartz/dartz.dart';
-
-import 'package:dio/dio.dart' as dio;
-import 'package:path/path.dart';
 
 import 'package:get/get.dart';
 
@@ -32,7 +25,7 @@ class ServerAPI {
 
       return right(data);
     } else {
-      return left(ServerFailure());
+      return left(const ServerFailure());
     }
   }
 

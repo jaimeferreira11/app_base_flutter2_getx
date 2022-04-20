@@ -4,6 +4,8 @@ import 'package:app_base_flutter2_getx/app/theme/fonts.dart';
 import 'package:flutter/material.dart';
 
 class NewVersionView extends StatelessWidget {
+  const NewVersionView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive.of(context);
@@ -25,11 +27,11 @@ class NewVersionView extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(right: 30, left: 30),
+            margin: const EdgeInsets.only(right: 30, left: 30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Spacer(
+                const Spacer(
                   flex: 2,
                 ),
                 Container(
@@ -38,7 +40,7 @@ class NewVersionView extends StatelessWidget {
                     child: Stack(
                       children: <Widget>[
                         ClipOval(
-                          child: Container(
+                          child: SizedBox(
                               //  color: Colors.white,
                               height: responsive.hp(20),
                               child:
@@ -51,7 +53,7 @@ class NewVersionView extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Container(
                   color: Colors.transparent,
                   child: Material(
@@ -62,7 +64,7 @@ class NewVersionView extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(
+                const Spacer(
                   flex: 2,
                 ),
                 MaterialButton(
@@ -87,7 +89,7 @@ class NewVersionView extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(
+                const Spacer(
                   flex: 2,
                 ),
               ],

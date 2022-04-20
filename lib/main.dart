@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/route_manager.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -11,18 +10,16 @@ import 'app/routes/app_pages.dart';
 import 'app/theme/theme.dart';
 
 void main() async {
- //WidgetsBinding widgetsBinding = 
- WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsBinding widgetsBinding =
+  WidgetsFlutterBinding.ensureInitialized();
   await DependecyInjection.init();
-   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(
       const MyApp(),
-      
     ),
   );
-  
 }
 
 class MyApp extends StatelessWidget {

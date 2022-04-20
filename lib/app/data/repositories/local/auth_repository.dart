@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:app_base_flutter2_getx/app/config/errors/exceptions.dart';
 import 'package:app_base_flutter2_getx/app/config/errors/failures.dart';
@@ -7,8 +8,8 @@ import 'package:app_base_flutter2_getx/app/data/providers/local/cache.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const CACHED_TOKEN = "CACHED_TOKEN";
-const CACHED_USER = "CACHED_USER";
+const cachedToken = "CACHED_TOKEN";
+const cachedUser = "CACHED_USER";
 
 class AuthRepository {
   // final _storage = new FlutterSecureStorage();
@@ -22,21 +23,21 @@ class AuthRepository {
       await sharedPreferences.clear();
       return const Right(true);
     } on CacheException {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 
   Future<Either<Failure, TokenModel>> getAuthToken() async {
     try {
       // final jsonString = await _storage.read(key: CACHED_TOKEN);
-      final jsonString = sharedPreferences.getString(CACHED_TOKEN);
+      final jsonString = sharedPreferences.getString(cachedToken);
       if (jsonString == null) throw CacheException();
       TokenModel result = TokenModel.fromMap(json.decode(jsonString));
       Cache.instance.token = result.accessToken;
       return Right(result);
     } catch (e) {
-      print(e);
-      return Left(CacheFailure());
+      log('$e');
+      return const Left(CacheFailure());
     }
   }
 
@@ -46,12 +47,12 @@ class AuthRepository {
           key: CACHED_TOKEN, value: json.encode(model.toJson())); */
 
       await sharedPreferences.setString(
-          CACHED_TOKEN, json.encode(model.toJson()));
+          cachedToken, json.encode(model.toJson()));
 
       Cache.instance.token = model.accessToken;
       return Right(model);
     } on CacheException {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 
@@ -82,10 +83,10 @@ class AuthRepository {
   Future<Either<Failure, bool>> deleteUsuario() async {
     try {
       // await _storage.delete(key: CACHED_USER);
-      await sharedPreferences.remove(CACHED_USER);
-      return Right(true);
+      await sharedPreferences.remove(cachedUser);
+      return const Right(true);
     } on CacheException {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 }

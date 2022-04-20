@@ -83,7 +83,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
-                              color: controller.errorPass.value.length == 0
+                              color: controller.errorPass.value.isEmpty
                                   ? Colors.grey
                                   : Colors.red,
                             ),
@@ -91,7 +91,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
-                              color: controller.errorPass.value.length == 0
+                              color: controller.errorPass.value.isEmpty
                                   ? AppColors.inputColor
                                   : Colors.red,
                             ),
@@ -101,7 +101,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                   /* Input 2 */
 
                   Obx(() => Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                           top: 8.0, bottom: 20.0, left: 20.0, right: 20.0),
                       child: TextFormField(
                         controller: controller.mapControllers["newPassword"],
@@ -120,7 +120,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                           fontSize: responsive.dp(1.8),
                         ),
                         decoration: InputDecoration(
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.lock_outline,
                           ),
                           suffixIcon: IconButton(
@@ -149,7 +149,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
-                              color: controller.errorPass.value.length == 0
+                              color: controller.errorPass.value.isEmpty
                                   ? Colors.grey
                                   : Colors.red,
                             ),
@@ -157,7 +157,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
-                              color: controller.errorPass.value.length == 0
+                              color: controller.errorPass.value.isEmpty
                                   ? AppColors.inputColor
                                   : Colors.red,
                             ),
@@ -167,7 +167,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                   /* Input 3 */
 
                   Obx(() => Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                           top: 8.0, bottom: 0.0, left: 20.0, right: 20.0),
                       child: TextFormField(
                         controller:
@@ -188,7 +188,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                           fontSize: responsive.dp(1.8),
                         ),
                         decoration: InputDecoration(
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.lock_outline,
                           ),
                           suffixIcon: IconButton(
@@ -217,7 +217,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
-                              color: controller.errorPass.value.length == 0
+                              color: controller.errorPass.value.isEmpty
                                   ? Colors.grey
                                   : Colors.red,
                             ),
@@ -225,7 +225,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
-                              color: controller.errorPass.value.length == 0
+                              color: controller.errorPass.value.isEmpty
                                   ? AppColors.inputColor
                                   : Colors.red,
                             ),
@@ -260,7 +260,7 @@ class CambiarPasswordWidget extends GetView<HomeController> {
                             child: MaterialButton(
                               elevation: 5.0,
                               color: AppColors.primaryColor,
-                              shape: StadiumBorder(),
+                              shape: const StadiumBorder(),
                               onPressed: () => _.cambiarPass(),
                               child: Container(
                                 width: double.infinity,

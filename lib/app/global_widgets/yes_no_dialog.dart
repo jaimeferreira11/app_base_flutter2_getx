@@ -1,8 +1,9 @@
-import 'package:app_base_flutter2_getx/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+
+import '../theme/colors.dart';
 
 class DialogoSiNo {
   Future<int?> abrirDialogoSiNo(String titulo, String mensaje) async =>
@@ -15,12 +16,10 @@ class DialogoSiNo {
         barrierDismissible: false,
       );
 
-  Future<int?> abrirDialogo(String titulo, String mensaje) async =>
+  Future<int?> abrirDialogo(String titulo, String mensaje,
+          {Icon? icon}) async =>
       await Get.dialog<int>(
-        _Dialog(
-          titulo: titulo,
-          mensaje: mensaje,
-        ),
+        _Dialog(titulo: titulo, mensaje: mensaje, icon: icon),
         useSafeArea: true,
         barrierDismissible: false,
       );
@@ -48,24 +47,24 @@ class DialogoSiNo {
 class _Dialog extends StatelessWidget {
   final String titulo;
   final String mensaje;
+  final Icon? icon;
 
-  const _Dialog({required this.titulo, required this.mensaje});
+  const _Dialog({
+    required this.titulo,
+    required this.mensaje,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Dialog(
-        clipBehavior: Clip.hardEdge,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        child: _StackDialog(
-          mensaje: mensaje,
-          titulo: titulo,
-        ),
+    return Dialog(
+      clipBehavior: Clip.hardEdge,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
       ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: _StackDialog(mensaje: mensaje, titulo: titulo, icon: icon),
     );
   }
 }
@@ -78,18 +77,16 @@ class _DialogSiNo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Dialog(
-        clipBehavior: Clip.hardEdge,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        child: _StackDialogSiNo(
-          mensaje: mensaje,
-          titulo: titulo,
-        ),
+    return Dialog(
+      clipBehavior: Clip.hardEdge,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: _StackDialogSiNo(
+        mensaje: mensaje,
+        titulo: titulo,
       ),
     );
   }
@@ -103,18 +100,16 @@ class _DialogSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Dialog(
-        clipBehavior: Clip.hardEdge,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        child: _StackDialogSuccess(
-          mensaje: mensaje,
-          titulo: titulo,
-        ),
+    return Dialog(
+      clipBehavior: Clip.hardEdge,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: _StackDialogSuccess(
+        mensaje: mensaje,
+        titulo: titulo,
       ),
     );
   }
@@ -128,18 +123,16 @@ class _DialogError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Dialog(
-        clipBehavior: Clip.hardEdge,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        child: _StackDialogError(
-          mensaje: mensaje,
-          titulo: titulo,
-        ),
+    return Dialog(
+      clipBehavior: Clip.hardEdge,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: _StackDialogError(
+        mensaje: mensaje,
+        titulo: titulo,
       ),
     );
   }
@@ -148,26 +141,27 @@ class _DialogError extends StatelessWidget {
 class _StackDialog extends StatelessWidget {
   final String titulo;
   final String mensaje;
+  final Icon? icon;
 
-  const _StackDialog({required this.titulo, required this.mensaje});
+  const _StackDialog({required this.titulo, required this.mensaje, this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             left: 20,
             top: 35.0,
             right: 20,
             bottom: 20.0,
           ),
-          margin: EdgeInsets.only(top: 45.0),
+          margin: const EdgeInsets.only(top: 45.0),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.0),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black,
                 offset: Offset(0, 10),
@@ -187,10 +181,11 @@ class _StackDialog extends StatelessWidget {
             backgroundColor: Colors.transparent,
             radius: 45,
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              child: Image.asset(
-                "assets/images/ic_launcher.png",
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              child: icon ??
+                  Image.asset(
+                    "assets/images/ic_launcher.png",
+                  ),
             ),
           ),
         ),
@@ -210,18 +205,18 @@ class _StackDialogSiNo extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             left: 20,
             top: 40.0,
             right: 20,
             bottom: 20.0,
           ),
-          margin: EdgeInsets.only(top: 50.0),
+          margin: const EdgeInsets.only(top: 50.0),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.0),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black,
                 offset: Offset(0, 10),
@@ -241,7 +236,7 @@ class _StackDialogSiNo extends StatelessWidget {
             backgroundColor: Colors.transparent,
             radius: 45,
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
               child: Image.asset(
                 "assets/images/ic_launcher.png",
               ),
@@ -264,18 +259,18 @@ class _StackDialogSuccess extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             left: 20,
             top: 35.0,
             right: 20,
             bottom: 20.0,
           ),
-          margin: EdgeInsets.only(top: 45.0),
+          margin: const EdgeInsets.only(top: 60.0),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.0),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black,
                 offset: Offset(0, 10),
@@ -324,18 +319,18 @@ class _StackDialogError extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             left: 20,
             top: 35.0,
             right: 20,
             bottom: 20.0,
           ),
-          margin: EdgeInsets.only(top: 45.0),
+          margin: const EdgeInsets.only(top: 45.0),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.0),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black,
                 offset: Offset(0, 10),
@@ -382,43 +377,43 @@ class _Formulario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 180, maxHeight: 200),
+      constraints: const BoxConstraints(minHeight: 180, maxHeight: 200),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
             titulo,
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          Divider(
+          const Divider(
             height: 1,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Text(
             mensaje,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           ConstrainedBox(
-            constraints: BoxConstraints(minWidth: 90, maxWidth: 150),
+            constraints: const BoxConstraints(minWidth: 90, maxWidth: 150),
             child: ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(
                   AppColors.secondaryColor,
                 ),
               ),
-              child: Text(
+              child: const Text(
                 'Aceptar',
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
@@ -441,47 +436,48 @@ class _FormularioSiNo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 180, maxHeight: 200),
+      constraints: const BoxConstraints(minHeight: 180, maxHeight: 220),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
             titulo,
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          Divider(
+          const Divider(
             height: 1,
           ),
-          SizedBox(
-            height: 30,
+          const SizedBox(
+            height: 10,
           ),
           Text(
             mensaje,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
-          SizedBox(
-            height: 40,
+          const SizedBox(
+            height: 30,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 90, maxWidth: 150),
+                constraints: const BoxConstraints(minWidth: 90, maxWidth: 150),
                 child: OutlinedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                       Colors.red.shade700,
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Cancelar',
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w500),
@@ -490,14 +486,14 @@ class _FormularioSiNo extends StatelessWidget {
                 ),
               ),
               ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 90, maxWidth: 150),
+                constraints: const BoxConstraints(minWidth: 90, maxWidth: 150),
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                      AppColors.primaryColor,
+                      AppColors.secondaryColor,
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Aceptar',
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w500),
@@ -539,14 +535,14 @@ class _FormularioSuccess extends StatelessWidget {
           ),
           const Divider(),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           Text(
             mensaje,
             style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -560,7 +556,7 @@ class _FormularioSuccess extends StatelessWidget {
                       AppColors.primaryColor,
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Aceptar',
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w500),
@@ -606,15 +602,15 @@ class _FormularioError extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Divider(),
-          SizedBox(
+          const Divider(),
+          const SizedBox(
             height: 10,
           ),
           Text(
             mensaje,
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
@@ -622,14 +618,14 @@ class _FormularioError extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 90, maxWidth: 150),
+                constraints: const BoxConstraints(minWidth: 90, maxWidth: 150),
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                       AppColors.primaryColor,
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Aceptar',
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w500),

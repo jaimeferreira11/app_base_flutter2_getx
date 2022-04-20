@@ -1,7 +1,7 @@
-import 'package:app_base_flutter2_getx/app/helpers/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../helpers/responsive.dart';
 import 'custom_decoration_inputs.dart';
 
 class CustomInput extends StatelessWidget {
@@ -19,8 +19,11 @@ class CustomInput extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final String? placeholder;
   final bool? enabled;
+  final bool readOnly;
   final InputBorder? border;
+  final IconButton? suffixIcon;
 
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   CustomInput(
       {required this.label,
       required this.onChanged,
@@ -31,12 +34,14 @@ class CustomInput extends StatelessWidget {
       this.borderEnabled = true,
       this.fontSize,
       this.enabled = true,
+      this.readOnly = false,
       this.icon,
       this.value,
       this.maxLength,
       this.maxLines,
       this.inputFormatters,
       this.border,
+      this.suffixIcon,
       this.placeholder = "Escriba aqui"});
 
   @override
@@ -51,8 +56,8 @@ class CustomInput extends StatelessWidget {
 
     final responsive = Responsive.of(context);
 
-    var fSize = responsive.dp(1);
-    if (this.fontSize != null) fSize = this.fontSize!;
+    var fSize = responsive.dp(1.8);
+    if (fontSize != null) fSize = fontSize!;
 
     String keyInputValue = "$key";
     bool existeValor = inputsValues.containsKey(keyInputValue);
@@ -75,46 +80,48 @@ class CustomInput extends StatelessWidget {
     }
     inputsValuesControllers[keyInputValue]!.text = value ?? "";
 
-    return Container(
-        child: TextFormField(
-            enabled: this.enabled,
-            onFieldSubmitted: (value) {
-              FocusScope.of(context).unfocus();
-              if (inputsFocusNodes.containsKey("$key")) {
-                print("key siguiente encontrada $key");
-                FocusScope.of(context).requestFocus(inputsFocusNodes["$key"]);
-              } else {
-                //NO EN ESTA PAGINA
-                print("key siguiente inexistente $key");
-              }
-            },
-            onChanged: (valor) {
-              inputsValues[keyInputValue] = valor;
-              this.onChanged(valor);
-            },
-            validator: this.validator ?? null,
-            maxLength: maxLength ?? null,
-            maxLines: maxLines ?? null,
-            focusNode: inputsFocusNodes[keyInputValue] ?? FocusNode(),
-            controller: inputsValuesControllers[keyInputValue],
-            textCapitalization: TextCapitalization.words,
-            inputFormatters: this.inputFormatters ?? [],
-            textInputAction: inputsFocusNodes.containsKey("$key")
-                ? TextInputAction.next
-                : TextInputAction.done,
-            keyboardType: this.keyboardType,
-            style: TextStyle(
-              // fontWeight: FontWeight.w300,
-              //color: Colors.black,
-              fontSize: fSize,
-            ),
-            decoration: this.icon == null
+    return TextFormField(
+        enabled: enabled,
+        readOnly: readOnly,
+        onFieldSubmitted: (value) {
+          FocusScope.of(context).unfocus();
+          if (inputsFocusNodes.containsKey("$key")) {
+            FocusScope.of(context).requestFocus(inputsFocusNodes["$key"]);
+          } else {}
+        },
+        onChanged: (valor) {
+          inputsValues[keyInputValue] = valor;
+          onChanged(valor);
+        },
+        enableSuggestions: false,
+        autocorrect: false,
+        validator: validator,
+        maxLength: maxLength,
+        maxLines: maxLines,
+        // focusNode: inputsFocusNodes[keyInputValue] ?? FocusNode(),
+        controller: inputsValuesControllers[keyInputValue],
+        textCapitalization: TextCapitalization.sentences,
+        inputFormatters: inputFormatters ?? [],
+        textInputAction: inputsFocusNodes.containsKey("$key")
+            ? TextInputAction.next
+            : TextInputAction.done,
+        keyboardType: keyboardType,
+        style: TextStyle(
+          // fontWeight: FontWeight.w300,
+          //color: Colors.black,
+          fontSize: fSize,
+        ),
+        decoration: suffixIcon != null
+            ? CustomDecorationInputs.searchInputDecoration(
+                hint: hint ?? "", icon: icon!, suffixIcon: suffixIcon)
+            : icon == null
                 ? CustomDecorationInputs.formInputDecoration(
-                    border: this.border, hint: this.hint ?? "", label: label)
+                    border: border, hint: hint ?? "", label: label)
                 : CustomDecorationInputs.formInputDecoration(
-                    border: this.border,
-                    hint: this.hint ?? "",
+                    border: border,
+                    hint: hint ?? "",
                     label: label,
-                    icon: this.icon)));
+                    icon: icon,
+                  ));
   }
 }

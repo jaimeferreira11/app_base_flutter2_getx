@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-Container lineSeparator() {
+Container lineSeparator(
+    {double? marginVertical,
+    double? marginHorizontal,
+    double height = 1.0,
+    Color color = Colors.black12}) {
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: 8.0),
+    margin: EdgeInsets.symmetric(
+        horizontal: marginHorizontal ?? 4.0, vertical: marginVertical ?? 0),
     width: double.infinity,
-    height: 1.0,
-    color: Colors.grey.shade300,
+    height: height,
+    color: color,
   );
 }

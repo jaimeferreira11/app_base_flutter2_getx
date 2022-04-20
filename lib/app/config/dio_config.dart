@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'dart:io';
+import 'dart:developer';
 
-import 'package:app_base_flutter2_getx/app/data/providers/local/cache.dart';
 import 'package:dio/dio.dart';
 
+import '../data/providers/local/cache.dart';
 import 'constants.dart';
 
 class DioService {
-  static Dio _dio = new Dio();
+  // static final Dio _dio = Dio();
 
   static DioService _singletonHttp = DioService._internal();
   late Dio _http;
@@ -25,15 +25,14 @@ class DioService {
   init() {
     _http = Dio();
 
-    _http.options.baseUrl = AppConstants.API_URL;
+    _http.options.baseUrl = AppConstants.apiURL;
 
     _http.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
       final path = options.path;
-      print(path);
 
       if (path.contains('oauth/token')) {
         final encode = base64.encode(
-          utf8.encode(AppConstants.CLIENT_SECRET),
+          utf8.encode(AppConstants.clientSecret),
         );
         options.headers = {
           'Authorization': 'Basic $encode',
@@ -41,9 +40,9 @@ class DioService {
         };
       } else if (path.contains("public")) {
         //
-        print('Metodo publico');
+        log('Metodo publico');
       } else {
-        print('No soy AUTH . Soy $path token: ${Cache.instance.token}');
+        log('No soy AUTH . Soy $path token: ${Cache.instance.token}');
         options.headers = {
           'Authorization': 'Bearer ${Cache.instance.token}',
           'Content-type': 'application/x-www-form-urlencoded'
@@ -64,6 +63,8 @@ class DioService {
       // If you want to reject the request with a error message,
       // you can reject a `DioError` object eg: return `dio.reject(dioError)`
     }, onError: (DioError e, handler) {
+      //log('Api code error: ${e.response!.statusCode}');
+      // log('Desc error: ${e.response!.toString()}');
       // Do something with response error
 
       // if (e.response!.statusCode == 500) {

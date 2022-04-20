@@ -3,21 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HeaderCuadrado extends StatelessWidget {
+  const HeaderCuadrado({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      color: Color(0xff615AAB),
+      color: const Color(0xff615AAB),
     );
   }
 }
 
 class HeaderBordesRedondeados extends StatelessWidget {
+  const HeaderBordesRedondeados({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Color(0xff615AAB),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(70),
@@ -28,9 +32,11 @@ class HeaderBordesRedondeados extends StatelessWidget {
 }
 
 class HeaderDiagonal extends StatelessWidget {
+  const HeaderDiagonal({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
@@ -43,14 +49,14 @@ class HeaderDiagonal extends StatelessWidget {
 class _HeaderDiagonalPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final lapiz = new Paint();
+    final lapiz = Paint();
 
     // Propiedades
-    lapiz.color = Color(0xff615AAB);
+    lapiz.color = const Color(0xff615AAB);
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20;
 
-    final path = new Path();
+    final path = Path();
 
     // Dibujar con el path y el lapiz
     path.moveTo(0, size.height * 0.35);
@@ -68,9 +74,11 @@ class _HeaderDiagonalPainter extends CustomPainter {
 }
 
 class HeaderTriangular extends StatelessWidget {
+  const HeaderTriangular({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
@@ -83,14 +91,14 @@ class HeaderTriangular extends StatelessWidget {
 class _HeaderTriangularPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final lapiz = new Paint();
+    final lapiz = Paint();
 
     // Propiedades
-    lapiz.color = Color(0xff615AAB);
+    lapiz.color = const Color(0xff615AAB);
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20;
 
-    final path = new Path();
+    final path = Path();
 
     // Dibujar con el path y el lapiz
     path.lineTo(size.width, size.height);
@@ -106,9 +114,11 @@ class _HeaderTriangularPainter extends CustomPainter {
 }
 
 class HeaderPico extends StatelessWidget {
+  const HeaderPico({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
@@ -121,14 +131,14 @@ class HeaderPico extends StatelessWidget {
 class _HeaderPicoPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final lapiz = new Paint();
+    final lapiz = Paint();
 
     // Propiedades
-    lapiz.color = Color(0xff615AAB);
+    lapiz.color = const Color(0xff615AAB);
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20;
 
-    final path = new Path();
+    final path = Path();
 
     // Dibujar con el path y el lapiz
     path.lineTo(0, size.height * 0.25);
@@ -146,9 +156,11 @@ class _HeaderPicoPainter extends CustomPainter {
 }
 
 class HeaderCurvo extends StatelessWidget {
+  const HeaderCurvo({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
@@ -161,14 +173,14 @@ class HeaderCurvo extends StatelessWidget {
 class _HeaderCurvoPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final lapiz = new Paint();
+    final lapiz = Paint();
 
     // Propiedades
-    lapiz.color = Color(0xff615AAB);
+    lapiz.color = const Color(0xff615AAB);
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20;
 
-    final path = new Path();
+    final path = Path();
 
     // Dibujar con el path y el lapiz
     path.lineTo(0, size.height * 0.25);
@@ -186,9 +198,11 @@ class _HeaderCurvoPainter extends CustomPainter {
 }
 
 class HeaderWave extends StatelessWidget {
+  const HeaderWave({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
@@ -201,14 +215,14 @@ class HeaderWave extends StatelessWidget {
 class _HeaderWavePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final lapiz = new Paint();
+    final lapiz = Paint();
 
     // Propiedades
-    lapiz.color = Color(0xff615AAB);
+    lapiz.color = const Color(0xff615AAB);
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20;
 
-    final path = new Path();
+    final path = Path();
 
     // Dibujar con el path y el lapiz
     path.lineTo(0, size.height * 0.25);
@@ -235,11 +249,13 @@ class IconHeader extends StatelessWidget {
   final Color color2;
 
   const IconHeader(
-      {required this.icon,
+      {Key? key,
+      required this.icon,
       required this.titulo,
       required this.subtitulo,
       this.color1 = Colors.grey,
-      this.color2 = Colors.blueGrey});
+      this.color2 = Colors.blueGrey})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -248,27 +264,26 @@ class IconHeader extends StatelessWidget {
     return Stack(
       children: <Widget>[
         _IconHeaderBackground(
-          color1: this.color1,
-          color2: this.color2,
+          color1: color1,
+          color2: color2,
         ),
         Positioned(
             top: -50,
             left: -70,
-            child: FaIcon(this.icon,
-                size: 250, color: Colors.white.withOpacity(0.2))),
+            child:
+                FaIcon(icon, size: 250, color: Colors.white.withOpacity(0.2))),
         Column(
           children: <Widget>[
-            SizedBox(height: 80, width: double.infinity),
-            Text(this.subtitulo,
-                style: TextStyle(fontSize: 20, color: colorBlanco)),
-            SizedBox(height: 20),
-            Text(this.titulo,
+            const SizedBox(height: 80, width: double.infinity),
+            Text(subtitulo, style: TextStyle(fontSize: 20, color: colorBlanco)),
+            const SizedBox(height: 20),
+            Text(titulo,
                 style: TextStyle(
                     fontSize: 25,
                     color: colorBlanco,
                     fontWeight: FontWeight.bold)),
-            SizedBox(height: 20),
-            FaIcon(this.icon, size: 80, color: Colors.white)
+            const SizedBox(height: 20),
+            FaIcon(icon, size: 80, color: Colors.white)
           ],
         )
       ],
@@ -292,13 +307,14 @@ class _IconHeaderBackground extends StatelessWidget {
       height: 300,
       decoration: BoxDecoration(
           // color: Colors.red,
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(80)),
+          borderRadius:
+              const BorderRadius.only(bottomLeft: Radius.circular(80)),
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: <Color>[
-                this.color1,
-                this.color2,
+                color1,
+                color2,
               ])),
     );
   }

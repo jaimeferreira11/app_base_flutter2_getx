@@ -9,6 +9,8 @@ import 'widgets_locales/bg_login.dart';
 import 'widgets_locales/login_form.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive.of(context);
