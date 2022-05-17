@@ -1,14 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:app_base_flutter2_getx/app/config/errors/exceptions.dart';
+import 'package:app_base_flutter2_getx/app/config/errors/failures.dart';
+import 'package:app_base_flutter2_getx/app/data/models/token_model.dart';
+import 'package:app_base_flutter2_getx/app/data/providers/local/cache.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../config/errors/exceptions.dart';
-import '../../../config/errors/failures.dart';
-import '../../models/token_model.dart';
-import '../../models/usuario_model.dart';
-import '../../providers/local/cache.dart';
 
 const cachedToken = "CACHED_TOKEN";
 const cachedUser = "CACHED_USER";
@@ -58,33 +56,33 @@ class AuthRepository {
     }
   }
 
-  Future<Either<Failure, UsuarioModel>> getUsuario() async {
-    try {
-      // final jsonString = await _storage.read(key: CACHED_USER);
-      final jsonString = sharedPreferences.getString(cachedUser);
-      if (jsonString == null) throw CacheException();
+  // Future<Either<Failure, UsuarioModel>> getUsuario() async {
+  //   try {
+  //     // final jsonString = await _storage.read(key: CACHED_USER);
+  //     final jsonString = sharedPreferences.getString(CACHED_USER);
+  //     if (jsonString == null) throw CacheException();
 
-      return Right(UsuarioModel.fromJson(json.decode(jsonString)));
-    } on CacheException {
-      return const Left(CacheFailure());
-    }
-  }
+  //     return Right(UsuarioModel.fromJson(json.decode(jsonString)));
+  //   } on CacheException {
+  //     return Left(CacheFailure());
+  //   }
+  // }
 
-  Future<Either<Failure, UsuarioModel>> setUsuario(UsuarioModel model) async {
-    try {
-      Cache.instance.user = model;
-      final String value = jsonEncode(model.toJson());
-      //await _storage.write(key: cachedUser, value: value);
-      await sharedPreferences.setString(cachedUser, value);
-      return Right(model);
-    } on CacheException {
-      return const Left(CacheFailure());
-    }
-  }
+  // Future<Either<Failure, UsuarioModel>> setUsuario(UsuarioModel model) async {
+  //   try {
+  //     Cache.instance.user = model;
+  //     final String value = jsonEncode(model.toJson());
+  //     //await _storage.write(key: CACHED_USER, value: value);
+  //     await sharedPreferences.setString(CACHED_USER, value);
+  //     return Right(model);
+  //   } on CacheException {
+  //     return Left(CacheFailure());
+  //   }
+  // }
 
   Future<Either<Failure, bool>> deleteUsuario() async {
     try {
-      // await _storage.delete(key: cachedUser);
+      // await _storage.delete(key: CACHED_USER);
       await sharedPreferences.remove(cachedUser);
       return const Right(true);
     } on CacheException {

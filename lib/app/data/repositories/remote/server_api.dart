@@ -1,22 +1,17 @@
-import 'dart:developer';
-
+import 'package:app_base_flutter2_getx/app/config/dio_config.dart';
+import 'package:app_base_flutter2_getx/app/config/errors/failures.dart';
+import 'package:app_base_flutter2_getx/app/data/models/token_model.dart';
+import 'package:app_base_flutter2_getx/app/data/providers/local/cache.dart';
 import 'package:dartz/dartz.dart';
 
 import 'package:get/get.dart';
-
-import '../../../config/constants.dart';
-import '../../../config/dio_config.dart';
-import '../../../config/errors/failures.dart';
-import '../../models/token_model.dart';
-import '../../models/usuario_model.dart';
-import '../../providers/local/cache.dart';
 
 class ServerAPI {
   final DioService _dio = Get.find<DioService>();
 
   Future<Either<Failure, TokenModel>> login(
       String username, String password) async {
-    String url = '/oauth/token';
+    String url = 'oauth/token';
     final res = await _dio.client.post(url, queryParameters: {
       'username': username.trim(),
       'password': password.trim(),
@@ -34,22 +29,20 @@ class ServerAPI {
     }
   }
 
-  Future<Either<Failure, UsuarioModel>> getUserByName(String name) async {
-    final res = await _dio.client.get("/usuario/'$name'");
+  // Future<Either<Failure, UsuarioModel>> verificarSession() async {
+  //   final url = AppConstants.API_URL + 'api/v1/oauth/check-token';
 
-    log("${res.statusCode}");
-    if (res.statusCode == 200) {
-      final data = UsuarioModel.fromJsonList(res.data);
+  //   final res = await _dio.client.get(url);
+  //   if (res.statusCode == 200) {
+  //     final data = UsuarioModel.fromJson(res.data);
 
-      Cache.instance.user = data[0];
+  //     Cache.instance.user = data;
 
-      return right(data[0]);
-    } else if (res.statusCode == 500) {
-      return left(const ServerFailure(mensaje: "Error en el servidor"));
-    } else {
-      return left(ServerFailure(mensaje: res.data['message']));
-    }
-  }
+  //     return right(data);
+  //   } else {
+  //     return left(ServerFailure());
+  //   }
+  // }
 
   // Future<Either<Failure, UsuarioModel>> obtenerUserInfo(String token) async {
   //   //final url = AppConstants.API_URL + 'private/user-info';

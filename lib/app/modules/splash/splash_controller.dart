@@ -1,9 +1,9 @@
-import 'package:get/get.dart';
+import 'package:app_base_flutter2_getx/app/data/repositories/local/auth_repository.dart';
+import 'package:app_base_flutter2_getx/app/data/repositories/remote/server_repository.dart';
+import 'package:app_base_flutter2_getx/app/routes/app_routes.dart';
+import 'package:app_base_flutter2_getx/app/routes/navigator.dart';
 
-import '../../data/repositories/local/auth_repository.dart';
-import '../../data/repositories/remote/server_repository.dart';
-import '../../routes/app_routes.dart';
-import '../../routes/navigator.dart';
+import 'package:get/get.dart';
 
 class SplashController extends GetxController {
   final authRepo = Get.find<AuthRepository>();

@@ -296,7 +296,7 @@ class _StackDialogSuccess extends StatelessWidget {
                   height: 100,
                   width: 100,
                   child: Icon(
-                    FontAwesomeIcons.circleCheck,
+                    FontAwesomeIcons.checkCircle,
                     color: Colors.green.shade700,
                     size: 60,
                   ),
@@ -356,7 +356,7 @@ class _StackDialogError extends StatelessWidget {
                   height: 100,
                   width: 100,
                   child: Icon(
-                    FontAwesomeIcons.circleXmark,
+                    FontAwesomeIcons.timesCircle,
                     color: Colors.red.shade700,
                     size: 60,
                   ),

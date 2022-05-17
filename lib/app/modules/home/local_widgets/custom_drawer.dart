@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../data/providers/local/cache.dart';
 import '../../../global_widgets/avatar_button.dart';
@@ -46,7 +47,7 @@ class CustomDrawer extends GetView<HomeController> {
             margin: const EdgeInsets.all(0),
             currentAccountPictureSize: const Size.square(85.0),
             accountName: Text(
-              Cache.instance.user.nombre,
+              "Usuario",
               style: TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.bold,
@@ -54,7 +55,7 @@ class CustomDrawer extends GetView<HomeController> {
                   fontStyle: FontStyle.italic),
             ),
             accountEmail: Text(
-              Cache.instance.user.vendedor,
+              'username',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,

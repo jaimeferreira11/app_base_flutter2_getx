@@ -17,6 +17,7 @@ class CustomInput extends StatelessWidget {
   final void Function(String text) onChanged;
   final String? Function(String? text)? validator;
   final List<TextInputFormatter>? inputFormatters;
+  final String? placeholder;
   final bool? enabled;
   final bool readOnly;
   final InputBorder? border;
@@ -40,7 +41,8 @@ class CustomInput extends StatelessWidget {
       this.maxLines,
       this.inputFormatters,
       this.border,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.placeholder = "Escriba aqui"});
 
   @override
   Widget build(BuildContext context) {

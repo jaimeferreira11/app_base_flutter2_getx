@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:app_base_flutter2_getx/app/theme/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../helpers/responsive.dart';
-import '../../theme/fonts.dart';
 import 'login_controller.dart';
 import 'widgets_locales/bg_login.dart';
 import 'widgets_locales/login_form.dart';
@@ -29,17 +29,31 @@ class LoginPage extends StatelessWidget {
                       Positioned.fill(
                         child: Align(
                           alignment: Alignment.topCenter,
-                          child: FadeInDown(
-                              child: Container(
-                            margin: EdgeInsets.only(top: responsive.hp(10)),
-                            child: Text(
-                              'Medicard',
-                              style: AppFonts.primaryFont.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                  fontSize: responsive.dp(4)),
-                            ),
-                          )),
+                          child: Column(
+                            children: [
+                              Hero(
+                                tag: 'login',
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                      top: responsive.hp(3),
+                                      bottom: responsive.hp(.5)),
+                                  child: const FlutterLogo(
+                                    size: 100,
+                                  ),
+                                ),
+                              ),
+                              FadeInDown(
+                                  child: Center(
+                                child: Text(
+                                  'App Name',
+                                  style: AppFonts.primaryFont.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                      fontSize: responsive.dp(4)),
+                                ),
+                              )),
+                            ],
+                          ),
                         ),
                       ),
                       const Positioned.fill(
@@ -56,7 +70,13 @@ class LoginPage extends StatelessWidget {
                                     style: AppFonts.secondaryFont.copyWith(
                                         fontSize: responsive.dp(1.8),
                                         fontWeight: FontWeight.bold),
-                                  ))))
+                                  ))
+                              // Image.asset(
+                              //   'assets/images/logo_MB.png',
+                              //   height: responsive.hp(10),
+                              //   width: double.infinity,
+                              // ),
+                              ))
                     ],
                   ),
                 ),

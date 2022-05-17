@@ -4,15 +4,11 @@ import 'package:dartz/dartz.dart';
 
 import 'package:get/get.dart';
 
-import '../../../config/errors/failures.dart';
-import '../../models/usuario_model.dart';
-import 'server_api.dart';
-
 class ServerRepository {
-  final ServerAPI _api = Get.find<ServerAPI>();
+  // final ServerAPI _api = Get.find<ServerAPI>();
 
-  Future<Either<Failure, UsuarioModel>> getUserByName(String name) =>
-      _api.getUserByName(name);
+  // Future<Either<Failure, UsuarioModel>> verfificarSession() =>
+  //     _api.verificarSession();
 
   // Future<Either<Failure, TokenModel>> login(String username, String password) =>
   //     _api.login(username, password);

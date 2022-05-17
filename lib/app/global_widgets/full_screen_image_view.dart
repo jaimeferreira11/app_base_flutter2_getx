@@ -49,7 +49,7 @@ class FullScreenImageView extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 borderRadius: BorderRadius.circular(30),
                 child: const Icon(
-                  FontAwesomeIcons.xmark,
+                  FontAwesomeIcons.times,
                   color: Colors.black87,
                 ),
                 onPressed: () {
