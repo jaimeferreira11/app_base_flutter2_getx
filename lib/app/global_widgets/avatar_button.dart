@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
-import 'package:app_base_flutter2_getx/app/theme/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../theme/colors.dart';
 
 class AvatarButton extends StatelessWidget {
   final double? imageSize;

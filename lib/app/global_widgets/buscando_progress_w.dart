@@ -1,6 +1,7 @@
-import 'package:app_base_flutter2_getx/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../theme/colors.dart';
 
 class BuscandoProgressWidget extends StatelessWidget {
   final RxBool buscando;

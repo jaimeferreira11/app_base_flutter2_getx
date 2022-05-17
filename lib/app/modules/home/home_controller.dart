@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 
 import '../../data/repositories/local/auth_repository.dart';
 import '../../data/repositories/remote/server_repository.dart';
-import '../../global_widgets/cambiar_password_widget.dart';
 import '../../helpers/notifications/notificacion_service.dart';
 import '../../routes/app_routes.dart';
 import '../../routes/navigator.dart';
 import 'local_widgets/custom_drawer.dart';
+import 'local_widgets/home_view.dart';
 
 class HomeController extends GetxController {
   final nav = Get.find<NavigatorController>();
@@ -21,21 +21,19 @@ class HomeController extends GetxController {
   String title = "Inicio";
   Widget selectedView = const Text('Inicio');
   final drawerItems = [
-    DrawerItem("Inicio", FontAwesomeIcons.home),
+    DrawerItem("Inicio", FontAwesomeIcons.house),
     // DrawerItem("Perfil", FontAwesomeIcons.userAlt),
-    DrawerItem("Cambiar contraseña", FontAwesomeIcons.userLock),
+    // DrawerItem("Cambiar contraseña", FontAwesomeIcons.userLock),
     // DrawerItem("Sobre esta app", FontAwesomeIcons.copyright),
-    DrawerItem("Cerrar sesión", FontAwesomeIcons.signOutAlt)
+    DrawerItem("Cerrar sesión", FontAwesomeIcons.rightFromBracket)
   ];
 
-  Widget currentPage = Container();
+  Widget currentPage = HomeView();
   RxBool buscando = false.obs;
 
   @override
   void onReady() async {
     super.onReady();
-
-    update();
   }
 
   onSelectItem(int index) {
@@ -47,16 +45,16 @@ class HomeController extends GetxController {
       case 0:
         title = "Inicio";
         selectedDrawerIndex = index;
-        currentPage = Container();
+        currentPage = HomeView();
         update();
         break;
+      // case 1:
+      //   title = "Cambiar contraseña";
+      //   selectedDrawerIndex = index;
+      //   currentPage = const CambiarPasswordWidget();
+      //   update();
+      //   break;
       case 1:
-        title = "Cambiar contraseña";
-        selectedDrawerIndex = index;
-        currentPage = const CambiarPasswordWidget();
-        update();
-        break;
-      case 2:
         launchDialogCerrarSesion();
         break;
       default:
@@ -161,7 +159,7 @@ class HomeController extends GetxController {
   Future<void> cerrarSesion() async {
     // await serverRepo.logout();
     // await authRepo.deleteAuthToken();
-    // await authRepo.deleteUsuario();
+    await authRepo.deleteUsuario();
 
     Future.delayed(const Duration(milliseconds: 500), () {
       nav.back();

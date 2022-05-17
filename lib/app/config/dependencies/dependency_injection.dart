@@ -1,11 +1,11 @@
-import 'package:app_base_flutter2_getx/app/data/repositories/local/auth_repository.dart';
-import 'package:app_base_flutter2_getx/app/data/repositories/remote/server_api.dart';
-import 'package:app_base_flutter2_getx/app/data/repositories/remote/server_repository.dart';
-import 'package:app_base_flutter2_getx/app/helpers/notifications/notificacion_service.dart';
-import 'package:app_base_flutter2_getx/app/routes/navigator.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../data/repositories/local/auth_repository.dart';
+import '../../data/repositories/remote/server_api.dart';
+import '../../data/repositories/remote/server_repository.dart';
+import '../../helpers/notifications/notificacion_service.dart';
+import '../../routes/navigator.dart';
 import '../dio_config.dart';
 
 class DependecyInjection {

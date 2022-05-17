@@ -42,11 +42,15 @@ class DioService {
         //
         log('Metodo publico');
       } else {
-        log('No soy AUTH . Soy $path token: ${Cache.instance.token}');
-        options.headers = {
-          'Authorization': 'Bearer ${Cache.instance.token}',
-          'Content-type': 'application/x-www-form-urlencoded'
-        };
+        log('No soy AUTH . Soy $path');
+        if (Cache.instance.token != null) {
+          log('Token: ${Cache.instance.token}');
+
+          options.headers = {
+            'Authorization': 'Bearer ${Cache.instance.token}',
+            'Content-type': 'application/x-www-form-urlencoded'
+          };
+        }
         options.contentType = Headers.jsonContentType;
         options.responseType = ResponseType.json;
       }
@@ -63,7 +67,8 @@ class DioService {
       // If you want to reject the request with a error message,
       // you can reject a `DioError` object eg: return `dio.reject(dioError)`
     }, onError: (DioError e, handler) {
-      //log('Api code error: ${e.response!.statusCode}');
+      log(e.toString());
+      // log('Api code error: ${e.response!.statusCode}');
       // log('Desc error: ${e.response!.toString()}');
       // Do something with response error
 

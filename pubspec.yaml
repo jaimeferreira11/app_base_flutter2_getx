@@ -1,4 +1,4 @@
-name: app_base_flutter2_getx
+name: medicard
 description: A new Flutter project.
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -12,24 +12,31 @@ dependencies:
   animate_do: ^2.0.0
   cached_network_image: ^3.1.0
   connectivity: ^3.0.6
+  cool_stepper: ^1.2.1
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
   dio: ^4.0.0
+  email_validator: ^2.0.1
   equatable: ^2.0.3
+  file_picker: ^4.5.1
   flutter:
     sdk: flutter
   flutter_native_splash: ^2.1.6
   flutter_spinkit: ^5.1.0
-  font_awesome_flutter: ^9.1.0
+  font_awesome_flutter: ^10.1.0
   get: ^4.3.8
   google_fonts: ^2.1.0
+  image_picker: ^0.8.5
   intl: ^0.17.0
+  mask_text_input_formatter: ^2.3.0
   package_info: ^2.0.2
+  permission_handler: ^9.2.0
   photo_view: ^0.12.0
   reactive_forms: ^10.6.0
   shared_preferences: ^2.0.8
 
 dev_dependencies:
+  change_app_package_name: ^1.0.0
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
@@ -59,7 +66,6 @@ flutter_native_splash:
   # flutter pub run flutter_native_splash:create
   # To restore Flutter's default white splash screen, run the following command in the terminal:
   # flutter pub run flutter_native_splash:remove
-
   # color or background_image is the only required parameter.  Use color to set the background
   # of your splash screen to a solid color.  Use background_image to set the background of your
   # splash screen to a png image.  This is useful for gradients. The image will be stretch to the

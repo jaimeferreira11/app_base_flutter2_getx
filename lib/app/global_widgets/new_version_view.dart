@@ -1,7 +1,8 @@
-import 'package:app_base_flutter2_getx/app/helpers/responsive.dart';
-import 'package:app_base_flutter2_getx/app/theme/colors.dart';
-import 'package:app_base_flutter2_getx/app/theme/fonts.dart';
 import 'package:flutter/material.dart';
+
+import '../helpers/responsive.dart';
+import '../theme/colors.dart';
+import '../theme/fonts.dart';
 
 class NewVersionView extends StatelessWidget {
   const NewVersionView({Key? key}) : super(key: key);

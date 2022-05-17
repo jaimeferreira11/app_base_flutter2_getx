@@ -1,8 +1,10 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:app_base_flutter2_getx/app/helpers/responsive.dart';
-import 'package:app_base_flutter2_getx/app/theme/colors.dart';
-import 'package:app_base_flutter2_getx/app/theme/fonts.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../helpers/responsive.dart';
+import '../../../theme/colors.dart';
+import '../../../theme/fonts.dart';
 
 class LoaderLogo extends StatelessWidget {
   const LoaderLogo({Key? key}) : super(key: key);
@@ -36,7 +38,7 @@ class LoaderLogo extends StatelessWidget {
                       delay: const Duration(milliseconds: 800),
                       child: const Hero(
                         tag: 'login',
-                        child:  FlutterLogo(size: 200),
+                        child: FlutterLogo(size: 200),
                       )),
                   SizedBox(
                     height: responsive.hp(2),

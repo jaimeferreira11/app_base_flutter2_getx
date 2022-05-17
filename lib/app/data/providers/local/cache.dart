@@ -1,3 +1,5 @@
+import '../../models/usuario_model.dart';
+
 class Cache {
   static Cache? _instance;
 
@@ -6,6 +8,5 @@ class Cache {
   static Cache get instance => _instance ??= Cache._();
 
   String? token;
-  // late Usuario user;
-
+  late UsuarioModel user;
 }

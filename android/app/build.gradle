@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.app_base_flutter2_getx"
+        applicationId "com.arasait.medicard"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()

@@ -33,13 +33,13 @@ class NotificationService {
           milliseconds: 3000,
         ),
         icon: (color == NotiKey.success)
-            ? const Icon(FontAwesomeIcons.checkCircle)
+            ? const Icon(FontAwesomeIcons.circleCheck)
             : (color == NotiKey.error)
-                ? const Icon(FontAwesomeIcons.timesCircle)
+                ? const Icon(FontAwesomeIcons.circleXmark)
                 : (color == NotiKey.info)
-                    ? const Icon(FontAwesomeIcons.infoCircle)
+                    ? const Icon(FontAwesomeIcons.circleInfo)
                     : (color == NotiKey.warning)
-                        ? const Icon(FontAwesomeIcons.exclamationTriangle)
+                        ? const Icon(FontAwesomeIcons.triangleExclamation)
                         : null);
   }
 
@@ -67,7 +67,7 @@ class NotificationService {
           milliseconds: 2500,
         ),
         icon: const Icon(
-          FontAwesomeIcons.exclamationCircle,
+          FontAwesomeIcons.circleExclamation,
           color: Colors.white,
         ));
   }
@@ -98,7 +98,7 @@ class NotificationService {
           milliseconds: 2500,
         ),
         icon: const Icon(
-          FontAwesomeIcons.checkCircle,
+          FontAwesomeIcons.circleCheck,
           color: Colors.white,
         ));
   }

@@ -56,40 +56,51 @@ class LoginController extends GetxController {
     ignore.value = true;
     FocusScope.of(Get.context!).requestFocus(FocusNode());
 
+    try {
+      final result = await serverRepo.getUserByName(username);
 
-    nav.goToAndClean(AppRoutes.home);
-    // try {
-    //   final result = await serverRepo.login(username, password);
-
-    //   result.fold(
-    //     (l) {
-    //       ignore.value = false;
-    //       noti.mostrarSnackBar(
-    //         color: NotiKey.error,
-    //         titulo: 'Crendenciales inválidas',
-    //         mensaje: "Usuario o contraseña incorrectos",
-    //       );
-    //       // _obscure.value = true;
-    //       //  loginForm.control('user').value = '';
-    //       loginForm.control('password').value = '';
-    //       loginForm
-    //           .control('password')
-    //           .setErrors({'Usuario o contraseña incorrectos': true});
-    //       loginForm.focus('password');
-    //     },
-    //     (r) async {
-    //       await authRepo.setAuthToken(r);
-    //       // await authRepo.setUsuario(r);
-    //       nav.goToAndClean(AppRoutes.home);
-    //     },
-    //   );
-    // } catch (e) {
-    //   ignore.value = false;
-    //   log('$e');
-    // }
+      ignore.value = false;
+      result.fold(
+        (l) {
+          noti.mostrarSnackBar(
+            color: NotiKey.error,
+            titulo: 'Crendenciales inválidas',
+            mensaje: "Usuario o contraseña incorrectos",
+          );
+          // _obscure.value = true;
+          //  loginForm.control('user').value = '';
+          loginForm.control('password').value = '';
+          loginForm
+              .control('password')
+              .setErrors({'Usuario o contraseña incorrectos': true});
+          loginForm.focus('password');
+        },
+        (r) async {
+          if (r.clave == password) {
+            await authRepo.setUsuario(r);
+            // await authRepo.setUsuario(r);
+            nav.goToAndClean(AppRoutes.home);
+            return;
+          }
+          noti.mostrarSnackBar(
+            color: NotiKey.error,
+            titulo: 'Crendenciales inválidas',
+            mensaje: "Usuario o contraseña incorrectos",
+          );
+          // _obscure.value = true;
+          //  loginForm.control('user').value = '';
+          loginForm.control('password').value = '';
+          loginForm
+              .control('password')
+              .setErrors({'Usuario o contraseña incorrectos': true});
+          loginForm.focus('password');
+        },
+      );
+    } catch (e) {
+      ignore.value = false;
+      log('$e');
+    }
   }
-
-  
 
   @override
   void onReady() {

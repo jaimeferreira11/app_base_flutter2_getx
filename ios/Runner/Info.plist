@@ -43,5 +43,11 @@
 		<false/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSCameraUsageDescription</key>
+		<string>Acceso a la camara para subir adjuntos</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>El acceso a la galeria es que puedas adjuntar archivos</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>El acceso a la galeria es que puedas adjuntar archivos</string>
 	</dict>
 </plist>

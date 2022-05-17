@@ -59,7 +59,7 @@ class LoginForm extends GetView<LoginController> {
               _InputWidget(
                 controlName: 'user',
                 hintText: 'Usuario',
-                icon: FontAwesomeIcons.userAlt,
+                icon: FontAwesomeIcons.userLarge,
                 validationMessageRequired: 'Este campo es obligatorio',
                 suffixIcon: false,
                 obscureText: false,
@@ -82,23 +82,23 @@ class LoginForm extends GetView<LoginController> {
                   controller: controller,
                 ),
               ),
-              SizedBox(height: responsive.hp(3)),
-              SizedBox(
-                width: double.infinity,
-                child: InkWell(
-                  onTap: () {
-                    controller.recoveryPassword();
-                  },
-                  child: Text(
-                    "Se me olvidó mi contraseña",
-                    textAlign: TextAlign.right,
-                    style: AppFonts.secondaryFont.copyWith(
-                        decoration: TextDecoration.underline,
-                        fontSize: responsive.dp(1.8),
-                        color: Colors.blue.shade700),
-                  ),
-                ),
-              ),
+              // SizedBox(height: responsive.hp(3)),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: InkWell(
+              //     onTap: () {
+              //       controller.recoveryPassword();
+              //     },
+              //     child: Text(
+              //       "Se me olvidó mi contraseña",
+              //       textAlign: TextAlign.right,
+              //       style: AppFonts.secondaryFont.copyWith(
+              //           decoration: TextDecoration.underline,
+              //           fontSize: responsive.dp(1.8),
+              //           color: Colors.blue.shade700),
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 height: responsive.hp(3.0),
               ),

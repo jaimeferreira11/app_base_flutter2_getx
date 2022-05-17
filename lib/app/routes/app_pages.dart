@@ -1,11 +1,13 @@
-import 'package:app_base_flutter2_getx/app/modules/home/home_bindings.dart';
-import 'package:app_base_flutter2_getx/app/modules/home/home_page.dart';
-import 'package:app_base_flutter2_getx/app/modules/login/login_binding.dart';
-import 'package:app_base_flutter2_getx/app/modules/login/login_page.dart';
-import 'package:app_base_flutter2_getx/app/modules/splash/splash_binding.dart';
-import 'package:app_base_flutter2_getx/app/modules/splash/splash_page.dart';
 import 'package:get/route_manager.dart';
 
+import '../modules/home/home_bindings.dart';
+import '../modules/home/home_page.dart';
+import '../modules/login/login_binding.dart';
+import '../modules/login/login_page.dart';
+import '../modules/registro-datos/registro_datos_binding.dart';
+import '../modules/registro-datos/registro_datos_page.dart';
+import '../modules/splash/splash_binding.dart';
+import '../modules/splash/splash_page.dart';
 import 'app_routes.dart';
 
 class AppPage {
@@ -22,5 +24,9 @@ class AppPage {
         name: AppRoutes.home,
         page: () => const HomePage(),
         binding: HomeBindings()),
+    GetPage(
+        name: AppRoutes.registroDatos,
+        page: () => const RegistroDatosPage(),
+        binding: RegistroDatosBinding()),
   ];
 }

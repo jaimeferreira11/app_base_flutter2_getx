@@ -1,4 +1,4 @@
-package com.example.app_base_flutter2_getx
+package com.arasait.medicard
 
 import io.flutter.embedding.android.FlutterActivity
 
