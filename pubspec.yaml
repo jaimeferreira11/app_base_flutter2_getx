@@ -37,9 +37,15 @@ dependencies:
 
 dev_dependencies:
   change_app_package_name: ^1.0.0
+  flutter_launcher_icons: "^0.9.2"
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/ic_launcher.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

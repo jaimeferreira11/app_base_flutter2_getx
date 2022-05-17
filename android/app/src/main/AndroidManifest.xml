@@ -2,7 +2,7 @@
     package="com.arasait.medicard">
    <application
         android:label="Medicard"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true">
         <activity
