@@ -26,8 +26,7 @@ class LoginForm extends GetView<LoginController> {
         child: Container(
           width: responsive.wp(90),
           margin: EdgeInsets.only(top: responsive.hp(5)),
-          padding: EdgeInsets.symmetric(
-              vertical: responsive.hp(2), horizontal: responsive.wp(5)),
+          padding: EdgeInsets.symmetric(vertical: responsive.hp(2), horizontal: responsive.wp(5)),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.0),
@@ -76,9 +75,7 @@ class LoginForm extends GetView<LoginController> {
                   icon: FontAwesomeIcons.lock,
                   validationMessageRequired: 'Este campo es obligatorio',
                   suffixIcon: true,
-                  suffixIcon1: controller.mostrarPassword.value
-                      ? FontAwesomeIcons.eye
-                      : FontAwesomeIcons.eyeSlash,
+                  suffixIcon1: controller.mostrarPassword.value ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash,
                   controller: controller,
                 ),
               ),
@@ -181,11 +178,8 @@ class _InputWidget extends StatelessWidget {
     final responsive = Responsive.of(context);
     return ReactiveTextField(
       formControlName: controlName,
-      obscureText:
-          obscureText == true ? controller.mostrarPassword.value : false,
-      validationMessages: (_) => {
-        ValidationMessage.required: validationMessageRequired,
-      },
+      obscureText: obscureText == true ? controller.mostrarPassword.value : false,
+      validationMessages: {ValidationMessage.required: (error) => validationMessageRequired},
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -196,8 +190,7 @@ class _InputWidget extends StatelessWidget {
         ),
         hintText: "Escribe aquí",
         labelStyle: const TextStyle(color: Colors.blueGrey),
-        hintStyle:
-            const TextStyle(color: Colors.black26, fontStyle: FontStyle.italic),
+        hintStyle: const TextStyle(color: Colors.black26, fontStyle: FontStyle.italic),
         labelText: hintText,
         suffixIcon: suffixIcon
             ? IconButton(

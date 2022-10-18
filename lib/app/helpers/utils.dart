@@ -1,4 +1,4 @@
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
@@ -11,6 +11,7 @@ class Utils {
     } else if (connectivityResult == ConnectivityResult.wifi) {
       return true;
     }
+
     if (!toast) return false;
 
     Get.snackbar(
