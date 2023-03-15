@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
-import '../../../data/providers/local/cache.dart';
 import '../../../global_widgets/avatar_button.dart';
 import '../../../helpers/responsive.dart';
 import '../../../theme/colors.dart';
@@ -20,9 +17,7 @@ class CustomDrawer extends GetView<HomeController> {
       var d = controller.drawerItems[i];
       var selected = i == controller.selectedDrawerIndex;
       drawerOptions.add(ListTile(
-        leading: Icon(d.icon,
-            size: responsive.dp(2),
-            color: selected ? AppColors.primaryColor : Colors.black54),
+        leading: Icon(d.icon, size: responsive.dp(2), color: selected ? AppColors.primaryColor : Colors.black54),
         title: Text(
           d.title,
           style: TextStyle(

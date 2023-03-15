@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../global_widgets/custom_home_item_widget.dart';
 import '../../../helpers/responsive.dart';
-import '../../../routes/app_routes.dart';
 
 class HomeMenuesView extends StatelessWidget {
   const HomeMenuesView({Key? key}) : super(key: key);

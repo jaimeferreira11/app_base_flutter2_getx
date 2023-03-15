@@ -1,14 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../data/repositories/local/auth_repository.dart';
 import '../../data/repositories/remote/server_repository.dart';
 import '../../helpers/notifications/notificacion_service.dart';
-import '../../helpers/notifications/notifications_keys.dart';
 import '../../routes/app_routes.dart';
 import '../../routes/navigator.dart';
 
@@ -22,8 +18,7 @@ class LoginController extends GetxController {
   RxBool ignore2 = false.obs;
   RxBool mostrarPassword = true.obs;
 
-  void cambiarMostrarPassword() =>
-      mostrarPassword.value = !mostrarPassword.value;
+  void cambiarMostrarPassword() => mostrarPassword.value = !mostrarPassword.value;
 
   final FormGroup loginForm = FormGroup({
     'user': FormControl(
@@ -56,7 +51,6 @@ class LoginController extends GetxController {
     ignore.value = true;
     FocusScope.of(Get.context!).requestFocus(FocusNode());
 
-
     nav.goToAndClean(AppRoutes.home);
     // try {
     //   final result = await serverRepo.login(username, password);
@@ -88,8 +82,6 @@ class LoginController extends GetxController {
     //   log('$e');
     // }
   }
-
-  
 
   @override
   void onReady() {

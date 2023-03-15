@@ -22,11 +22,11 @@ class HomeController extends GetxController {
   String title = "Inicio";
   Widget selectedView = const Text('Inicio');
   final drawerItems = [
-    DrawerItem("Inicio", FontAwesomeIcons.home),
+    DrawerItem("Inicio", FontAwesomeIcons.house),
     // DrawerItem("Perfil", FontAwesomeIcons.userAlt),
     DrawerItem("Cambiar contraseña", FontAwesomeIcons.userLock),
     // DrawerItem("Sobre esta app", FontAwesomeIcons.copyright),
-    DrawerItem("Cerrar sesión", FontAwesomeIcons.signOutAlt)
+    DrawerItem("Cerrar sesión", FontAwesomeIcons.rightFromBracket)
   ];
 
   Widget currentPage = const HomeMenuesView();

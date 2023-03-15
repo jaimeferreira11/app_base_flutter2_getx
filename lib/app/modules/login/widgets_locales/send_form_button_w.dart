@@ -36,25 +36,22 @@ class FormularioSendButton extends StatelessWidget {
       height: height,
       child: MaterialButton(
           elevation: 5.0,
-          color: form.valid
-              ? AppColors.primaryColor
-              : Colors.blueGrey.withOpacity(0.3),
+          color: form.valid ? AppColors.primaryColor : Colors.blueGrey.withOpacity(0.3),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10), // <-- Radius
           ),
+          onPressed: form.valid ? () => funcion() : () {},
           child: _LoginButtonChild(
             controller: loginController,
             ignore: ignore,
             text: text,
-          ),
-          onPressed: form.valid ? () => funcion() : () {}),
+          )),
     );
   }
 }
 
 class _LoginButtonChild extends StatelessWidget {
-  const _LoginButtonChild(
-      {required this.controller, required this.ignore, required this.text});
+  const _LoginButtonChild({required this.controller, required this.ignore, required this.text});
 
   final LoginController controller;
   final RxBool ignore;
@@ -72,10 +69,8 @@ class _LoginButtonChild extends StatelessWidget {
               )
             : Text(
                 text,
-                style: AppFonts.secondaryFont.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: responsive.dp(2)),
+                style: AppFonts.secondaryFont
+                    .copyWith(color: Colors.white, fontWeight: FontWeight.w700, fontSize: responsive.dp(2)),
               ),
       ),
     );

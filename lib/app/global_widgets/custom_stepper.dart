@@ -18,7 +18,7 @@ class CustomStepper extends StatefulWidget {
 }
 
 class _CustomStepperState extends State<CustomStepper> {
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
 
   int currentStep = 0;
 
@@ -30,11 +30,11 @@ class _CustomStepperState extends State<CustomStepper> {
   }
 
   Future<void> switchToPage(int page) async {
-    await this._controller.animateToPage(
-          page,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.ease,
-        );
+    await _controller.animateToPage(
+      page,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.ease,
+    );
   }
 
   bool _isFirst(int index) {
@@ -67,25 +67,25 @@ class _CustomStepperState extends State<CustomStepper> {
         '',
         snackPosition: SnackPosition.BOTTOM,
         padding: EdgeInsets.zero,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         titleText: Container(
-          margin: EdgeInsets.only(top: 20),
+          margin: const EdgeInsets.only(top: 20),
           child: Text(
             validation,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               color: Colors.white,
             ),
           ),
         ),
-        icon: Icon(
+        icon: const Icon(
           Icons.info_outline,
           size: 28.0,
           color: Colors.white,
         ),
         colorText: Colors.white,
         backgroundColor: Colors.red,
-        duration: Duration(
+        duration: const Duration(
           milliseconds: 2000,
         ),
       );
@@ -106,8 +106,8 @@ class _CustomStepperState extends State<CustomStepper> {
   Widget build(BuildContext context) {
     final content = Expanded(
       child: PageView(
-        controller: this._controller,
-        physics: NeverScrollableScrollPhysics(),
+        controller: _controller,
+        physics: const NeverScrollableScrollPhysics(),
         children: widget.steps.map((step) {
           return CustomStepperView(
             step: step,
@@ -116,12 +116,10 @@ class _CustomStepperState extends State<CustomStepper> {
       ),
     );
 
-    final counter = Container(
-      child: Text(
-        "Paso ${currentStep + 1} DE ${widget.steps.length}",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
+    final counter = Text(
+      "Paso ${currentStep + 1} DE ${widget.steps.length}",
+      style: const TextStyle(
+        fontWeight: FontWeight.bold,
       ),
     );
 
@@ -145,35 +143,31 @@ class _CustomStepperState extends State<CustomStepper> {
       return backLabel;
     }
 
-    final buttons = Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          TextButton(
-            onPressed: onStepBack,
-            child: Text(
-              getPrevLabel(),
-              style: TextStyle(color: Colors.grey),
+    final buttons = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        TextButton(
+          onPressed: onStepBack,
+          child: Text(
+            getPrevLabel(),
+            style: const TextStyle(color: Colors.grey),
+          ),
+        ),
+        counter,
+        TextButton(
+          onPressed: onStepNext,
+          child: Text(
+            getNextLabel(),
+            style: const TextStyle(
+              color: Colors.green,
             ),
           ),
-          counter,
-          TextButton(
-            onPressed: onStepNext,
-            child: Text(
-              getNextLabel(),
-              style: TextStyle(
-                color: Colors.green,
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
 
-    return Container(
-      child: Column(
-        children: [content, buttons],
-      ),
+    return Column(
+      children: [content, buttons],
     );
   }
 }

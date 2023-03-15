@@ -119,8 +119,8 @@ class InputSelectWidget extends StatelessWidget {
                 },
           items: options.map<DropdownMenuItem>((valor) {
             return DropdownMenuItem(
-              child: Text(valor),
               value: valor,
+              child: Text(valor),
             );
           }).toList(),
         )),

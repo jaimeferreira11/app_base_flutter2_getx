@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-import '../helpers/responsive.dart';
 import '../modules/home/home_controller.dart';
 import '../theme/colors.dart';
 
@@ -9,12 +8,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String? titulo;
   final bool? showLogOutButton;
 
-  CustomAppBar({Key? key, this.titulo, this.showLogOutButton = true})
-      : super(key: key);
+  CustomAppBar({Key? key, this.titulo, this.showLogOutButton = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final responsive = Responsive.of(context);
+    // final responsive = Responsive.of(context);
     return GetBuilder<HomeController>(
         builder: (_) => AppBar(
               backgroundColor: AppColors.secondaryColor,
@@ -35,8 +33,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                       Container(
                         margin: const EdgeInsets.only(top: 5),
                         child: IconButton(
-                            onPressed: () => _.launchDialogCerrarSesion(),
-                            icon: const Icon(Icons.exit_to_app)),
+                            onPressed: () => _.launchDialogCerrarSesion(), icon: const Icon(Icons.exit_to_app)),
                       ),
                     ]
                   : [],
@@ -44,6 +41,5 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize =>
-      Size.fromHeight(AppBar().preferredSize.height * 1.1);
+  Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height * 1.1);
 }

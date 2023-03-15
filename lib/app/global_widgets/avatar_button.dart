@@ -11,13 +11,7 @@ class AvatarButton extends StatelessWidget {
   final String? url;
   final String? path;
   final bool editar;
-  AvatarButton(
-      {Key? key,
-      this.imageSize = 100,
-      this.url,
-      this.path,
-      this.onPressed,
-      this.editar = false})
+  AvatarButton({Key? key, this.imageSize = 100, this.url, this.path, this.onPressed, this.editar = false})
       : super(key: key);
 
   @override
@@ -42,17 +36,14 @@ class AvatarButton extends StatelessWidget {
                     ? CachedNetworkImage(
                         imageUrl: url ??
                             'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJLquHluAWETjCNVAvbPMLh1Msk879xChiuQ&usqp=CAU',
-                        progressIndicatorBuilder:
-                            (context, url, downloadProgress) => SizedBox(
+                        progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
                           width: 50,
                           height: 50,
                           child: Center(
-                            child: CircularProgressIndicator(
-                                value: downloadProgress.progress),
+                            child: CircularProgressIndicator(value: downloadProgress.progress),
                           ),
                         ),
-                        errorWidget: (context, url, error) =>
-                            Image.asset('assets/images/no-image.jpg'),
+                        errorWidget: (context, url, error) => Image.asset('assets/images/no-image.jpg'),
                         width: imageSize,
                         height: imageSize,
                         fit: BoxFit.cover,
@@ -71,11 +62,8 @@ class AvatarButton extends StatelessWidget {
             child: CupertinoButton(
               padding: EdgeInsets.zero,
               borderRadius: BorderRadius.circular(30),
+              onPressed: onPressed,
               child: Container(
-                child: const Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
                 padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -85,8 +73,11 @@ class AvatarButton extends StatelessWidget {
                   color: AppColors.accentColor,
                   shape: BoxShape.circle,
                 ),
+                child: const Icon(
+                  Icons.edit,
+                  color: Colors.white,
+                ),
               ),
-              onPressed: onPressed,
             ),
           ),
         )

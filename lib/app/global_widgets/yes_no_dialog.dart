@@ -6,8 +6,7 @@ import 'package:get/get.dart';
 import '../theme/colors.dart';
 
 class DialogoSiNo {
-  Future<int?> abrirDialogoSiNo(String titulo, String mensaje) async =>
-      await Get.dialog<int>(
+  Future<int?> abrirDialogoSiNo(String titulo, String mensaje) async => await Get.dialog<int>(
         _DialogSiNo(
           titulo: titulo,
           mensaje: mensaje,
@@ -16,16 +15,13 @@ class DialogoSiNo {
         barrierDismissible: false,
       );
 
-  Future<int?> abrirDialogo(String titulo, String mensaje,
-          {Icon? icon}) async =>
-      await Get.dialog<int>(
+  Future<int?> abrirDialogo(String titulo, String mensaje, {Icon? icon}) async => await Get.dialog<int>(
         _Dialog(titulo: titulo, mensaje: mensaje, icon: icon),
         useSafeArea: true,
         barrierDismissible: false,
       );
 
-  Future<int?> abrirDialogoSucccess(String mensaje) async =>
-      await Get.dialog<int>(
+  Future<int?> abrirDialogoSucccess(String mensaje) async => await Get.dialog<int>(
         _DialogSuccess(
           titulo: "Proceso exitoso",
           mensaje: mensaje,
@@ -296,7 +292,7 @@ class _StackDialogSuccess extends StatelessWidget {
                   height: 100,
                   width: 100,
                   child: Icon(
-                    FontAwesomeIcons.checkCircle,
+                    FontAwesomeIcons.circleCheck,
                     color: Colors.green.shade700,
                     size: 60,
                   ),
@@ -356,7 +352,7 @@ class _StackDialogError extends StatelessWidget {
                   height: 100,
                   width: 100,
                   child: Icon(
-                    FontAwesomeIcons.timesCircle,
+                    FontAwesomeIcons.circleXmark,
                     color: Colors.red.shade700,
                     size: 60,
                   ),
@@ -415,8 +411,7 @@ class _Formulario extends StatelessWidget {
               ),
               child: const Text(
                 'Aceptar',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
               ),
               onPressed: () => Get.back(result: 0),
             ),
@@ -479,8 +474,7 @@ class _FormularioSiNo extends StatelessWidget {
                   ),
                   child: const Text(
                     'Cancelar',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                   ),
                   onPressed: () => Get.back(result: 0),
                 ),
@@ -495,8 +489,7 @@ class _FormularioSiNo extends StatelessWidget {
                   ),
                   child: const Text(
                     'Aceptar',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                   ),
                   onPressed: () => Get.back(result: 1),
                 ),
@@ -525,10 +518,7 @@ class _FormularioSuccess extends StatelessWidget {
         children: [
           Text(
             titulo,
-            style: TextStyle(
-                color: Colors.green.shade700,
-                fontSize: 18,
-                fontWeight: FontWeight.w500),
+            style: TextStyle(color: Colors.green.shade700, fontSize: 18, fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 5,
@@ -558,8 +548,7 @@ class _FormularioSuccess extends StatelessWidget {
                   ),
                   child: const Text(
                     'Aceptar',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                   ),
                   onPressed: () => Get.back(result: 1),
                 ),
@@ -594,10 +583,7 @@ class _FormularioError extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                fontSize: 18,
-                color: Colors.red.shade700,
-                fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 18, color: Colors.red.shade700, fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 5,
@@ -627,8 +613,7 @@ class _FormularioError extends StatelessWidget {
                   ),
                   child: const Text(
                     'Aceptar',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                   ),
                   onPressed: () => Get.back(),
                 ),

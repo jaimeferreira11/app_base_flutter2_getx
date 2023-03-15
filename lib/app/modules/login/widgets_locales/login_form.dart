@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../../global_widgets/line_separator_widget.dart';
 import '../../../helpers/responsive.dart';
-import '../../../routes/app_routes.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/fonts.dart';
 import '../login_controller.dart';
@@ -58,7 +55,7 @@ class LoginForm extends GetView<LoginController> {
               _InputWidget(
                 controlName: 'user',
                 hintText: 'Usuario',
-                icon: FontAwesomeIcons.userAlt,
+                icon: FontAwesomeIcons.userLarge,
                 validationMessageRequired: 'Este campo es obligatorio',
                 suffixIcon: false,
                 obscureText: false,

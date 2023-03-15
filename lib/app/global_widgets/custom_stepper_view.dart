@@ -16,8 +16,8 @@ class CustomStepperView extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = Container(
       width: double.infinity,
-      margin: EdgeInsets.only(bottom: 20.0),
-      padding: EdgeInsets.all(20.0),
+      margin: const EdgeInsets.only(bottom: 20.0),
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor.withOpacity(0.1),
       ),

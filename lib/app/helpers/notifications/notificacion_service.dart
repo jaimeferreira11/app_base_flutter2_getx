@@ -33,18 +33,17 @@ class NotificationService {
           milliseconds: 3000,
         ),
         icon: (color == NotiKey.success)
-            ? const Icon(FontAwesomeIcons.checkCircle)
+            ? const Icon(FontAwesomeIcons.circleCheck)
             : (color == NotiKey.error)
-                ? const Icon(FontAwesomeIcons.timesCircle)
+                ? const Icon(FontAwesomeIcons.circleXmark)
                 : (color == NotiKey.info)
-                    ? const Icon(FontAwesomeIcons.infoCircle)
+                    ? const Icon(FontAwesomeIcons.circleInfo)
                     : (color == NotiKey.warning)
-                        ? const Icon(FontAwesomeIcons.exclamationTriangle)
+                        ? const Icon(FontAwesomeIcons.triangleExclamation)
                         : null);
   }
 
-  void mostrarInternalError(
-      {required String mensaje, SnackPosition position = SnackPosition.TOP}) {
+  void mostrarInternalError({required String mensaje, SnackPosition position = SnackPosition.TOP}) {
     Get.snackbar('', '',
         snackPosition: position,
         titleText: const Text(
@@ -67,15 +66,13 @@ class NotificationService {
           milliseconds: 2500,
         ),
         icon: const Icon(
-          FontAwesomeIcons.exclamationCircle,
+          FontAwesomeIcons.circleExclamation,
           color: Colors.white,
         ));
   }
 
   void mostrarSuccess(
-      {String titulo = "Proceso exitoso",
-      required String mensaje,
-      SnackPosition position = SnackPosition.BOTTOM}) {
+      {String titulo = "Proceso exitoso", required String mensaje, SnackPosition position = SnackPosition.BOTTOM}) {
     Get.snackbar('', '',
         snackPosition: position,
         titleText: Text(
@@ -98,7 +95,7 @@ class NotificationService {
           milliseconds: 2500,
         ),
         icon: const Icon(
-          FontAwesomeIcons.checkCircle,
+          FontAwesomeIcons.circleCheck,
           color: Colors.white,
         ));
   }

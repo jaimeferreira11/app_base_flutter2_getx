@@ -10,17 +10,18 @@ ThemeData buildThemeData() {
     primaryColor: AppColors.primaryColor,
     primarySwatch: AppColors.inputColor,
     textTheme: const TextTheme(
-      headline6: TextStyle(color: Colors.white), // card header text
+      //  headline6: TextStyle(color: Colors.white), // @deprecated se usa titleLarge
+      titleLarge: TextStyle(color: Colors.white), // card header text
     ),
     inputDecorationTheme: InputDecorationTheme(
         focusColor: AppColors.inputColor,
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
-            borderSide: const BorderSide(color: AppColors.inputColor)),
+            borderRadius: BorderRadius.circular(20.0), borderSide: const BorderSide(color: AppColors.inputColor)),
         labelStyle: const TextStyle(color: Colors.black87)),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        primary: AppColors.inputColor,
+        // primary: AppColors.inputColor, @deprecated se usa foregroundColor
+        foregroundColor: AppColors.inputColor,
       ),
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
