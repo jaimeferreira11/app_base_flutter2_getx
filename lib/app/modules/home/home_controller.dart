@@ -32,10 +32,24 @@ class HomeController extends GetxController {
   Widget currentPage = const HomeMenuesView();
   RxBool buscando = false.obs;
 
+  // botom navigation
+  final currentIndex = 0.obs;
+  List pages = [
+    {"page": Container(), "title": "Asignaciones"},
+    {"page": Container(), "title": "Histórico"}
+  ];
+
   @override
   void onReady() async {
     super.onReady();
 
+    update();
+  }
+
+  void changePage(int index) {
+    currentIndex.value = index;
+    currentPage = pages[currentIndex.value]['page'];
+    title = pages[currentIndex.value]['title'];
     update();
   }
 

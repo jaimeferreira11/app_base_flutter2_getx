@@ -4,6 +4,11 @@ import 'package:app_base_flutter2_getx/app/routes/app_routes.dart';
 import 'package:app_base_flutter2_getx/app/routes/navigator.dart';
 
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import '../../data/providers/local/cache.dart';
+import '../../helpers/utils.dart';
 
 class SplashController extends GetxController {
   final authRepo = Get.find<AuthRepository>();
@@ -17,8 +22,7 @@ class SplashController extends GetxController {
   }
 
   _init() async {
-    Future.delayed(
-        const Duration(seconds: 2), () => nav.goToOff(AppRoutes.login));
+    Future.delayed(const Duration(seconds: 2), () => nav.goToOff(AppRoutes.login));
     // final resp = await serverRepo.getVersion();
 
     // resp.fold((l) => verificarSesion(), (r) async {
@@ -35,6 +39,18 @@ class SplashController extends GetxController {
     //     verificarSesion();
     //   }
     // });
+
+    await [
+      Permission.location,
+      Permission.locationWhenInUse,
+      Permission.phone,
+      Permission.camera,
+      Permission.storage,
+    ].request();
+    await verifyLocation();
+
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    Cache.instance.version = info.version;
   }
 
   Future verificarSesion() async {
@@ -67,5 +83,12 @@ class SplashController extends GetxController {
         },
       ),
     );
+  }
+
+  Future verifyLocation() async {
+    final result = await Utils.acquireCurrentLocation();
+    if (result != null) {
+      Cache.instance.currentLocation = result;
+    }
   }
 }

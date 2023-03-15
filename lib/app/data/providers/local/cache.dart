@@ -1,3 +1,5 @@
+import 'package:location/location.dart';
+
 class Cache {
   static Cache? _instance;
 
@@ -8,4 +10,6 @@ class Cache {
   String? token;
   // late Usuario user;
 
+  LocationData? currentLocation;
+  late String version;
 }

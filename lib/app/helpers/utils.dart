@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:location/location.dart';
 import 'package:path/path.dart';
 
 class Utils {
@@ -53,5 +56,30 @@ class Utils {
       }
     }
     return age;
+  }
+
+  static Future<LocationData?> acquireCurrentLocation() async {
+    Location location = Location();
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return null;
+      }
+    }
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        return null;
+      }
+    }
+
+    final locationData = await location.getLocation();
+    log('La ubicacion actual es : $locationData');
+    return locationData.latitude == null ? null : locationData;
   }
 }
