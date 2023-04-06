@@ -7,6 +7,7 @@ class AppColors {
   static const accentColor = Color(0xffef9f24);
   static const linkColor = Colors.blue;
   static const textColor = Color(0xff646464);
+  static const errorColor = Color(0xFFD32F2F);
 
   static const inputColor = MaterialColor(
     0xffaec437,

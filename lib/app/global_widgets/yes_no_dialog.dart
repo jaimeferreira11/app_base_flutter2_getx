@@ -4,12 +4,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../theme/colors.dart';
+import '../theme/fonts.dart';
 
 class DialogoSiNo {
-  Future<int?> abrirDialogoSiNo(String titulo, String mensaje) async => await Get.dialog<int>(
+  Future<int?> abrirDialogoSiNo(String titulo, String mensaje, {String? positiveText, String? negativeText}) async =>
+      await Get.dialog<int>(
         _DialogSiNo(
           titulo: titulo,
           mensaje: mensaje,
+          positiveText: positiveText ?? 'SI',
+          negativeText: negativeText ?? 'NO',
         ),
         useSafeArea: true,
         barrierDismissible: false,
@@ -68,8 +72,10 @@ class _Dialog extends StatelessWidget {
 class _DialogSiNo extends StatelessWidget {
   final String titulo;
   final String mensaje;
+  final String? positiveText;
+  final String? negativeText;
 
-  const _DialogSiNo({required this.titulo, required this.mensaje});
+  const _DialogSiNo({required this.titulo, required this.mensaje, this.positiveText, this.negativeText});
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +89,8 @@ class _DialogSiNo extends StatelessWidget {
       child: _StackDialogSiNo(
         mensaje: mensaje,
         titulo: titulo,
+        positiveText: positiveText,
+        negativeText: negativeText,
       ),
     );
   }
@@ -193,8 +201,10 @@ class _StackDialog extends StatelessWidget {
 class _StackDialogSiNo extends StatelessWidget {
   final String titulo;
   final String mensaje;
+  final String? positiveText;
+  final String? negativeText;
 
-  const _StackDialogSiNo({required this.titulo, required this.mensaje});
+  const _StackDialogSiNo({required this.titulo, required this.mensaje, this.positiveText, this.negativeText});
 
   @override
   Widget build(BuildContext context) {
@@ -223,6 +233,8 @@ class _StackDialogSiNo extends StatelessWidget {
           child: _FormularioSiNo(
             mensaje: mensaje,
             titulo: titulo,
+            positiveText: positiveText,
+            negativeText: negativeText,
           ),
         ),
         Positioned(
@@ -425,8 +437,15 @@ class _Formulario extends StatelessWidget {
 class _FormularioSiNo extends StatelessWidget {
   final String titulo;
   final String mensaje;
-
-  const _FormularioSiNo({required this.titulo, required this.mensaje});
+  final String? positiveText;
+  final String? negativeText;
+  const _FormularioSiNo({
+    Key? key,
+    required this.titulo,
+    required this.mensaje,
+    this.positiveText = 'Aceptar',
+    this.negativeText = 'Cancelar',
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -472,9 +491,9 @@ class _FormularioSiNo extends StatelessWidget {
                       Colors.red.shade700,
                     ),
                   ),
-                  child: const Text(
-                    'Cancelar',
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                  child: Text(
+                    negativeText!,
+                    style: AppFonts.secondaryFont.copyWith(color: Colors.white, fontWeight: FontWeight.w500),
                   ),
                   onPressed: () => Get.back(result: 0),
                 ),
@@ -487,9 +506,9 @@ class _FormularioSiNo extends StatelessWidget {
                       AppColors.secondaryColor,
                     ),
                   ),
-                  child: const Text(
-                    'Aceptar',
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                  child: Text(
+                    positiveText!,
+                    style: AppFonts.secondaryFont.copyWith(color: Colors.white, fontWeight: FontWeight.w500),
                   ),
                   onPressed: () => Get.back(result: 1),
                 ),

@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
 
 import '../helpers/responsive.dart';
+import '../theme/colors.dart';
+import '../theme/fonts.dart';
 
 // ignore: must_be_immutable
-class InputSelectWidget extends StatelessWidget {
+class CustomInputSelectWidget extends StatelessWidget {
   final String? label;
   final List<String> options;
   String value;
   final bool borderEnabled;
-  final double fontSize;
+  final double? fontSize;
   final bool requerido;
   final void Function(String text)? onChanged;
   final String? Function(String text)? validator;
   final bool editable;
+  final bool labelCenter;
 
-  InputSelectWidget({
+  CustomInputSelectWidget({
     Key? key,
     this.label,
     required this.options,
     this.value = 'Seleccione una opción',
     this.borderEnabled = true,
-    this.fontSize = 18,
+    this.fontSize,
     this.onChanged,
     this.requerido = false,
     this.editable = true,
+    this.labelCenter = false,
     this.validator,
   }) : super(key: key);
 
@@ -48,32 +52,25 @@ class InputSelectWidget extends StatelessWidget {
 
   List<Widget> _getSlider(BuildContext context) {
     final responsive = Responsive.of(context);
+    var fSize = responsive.dp(1.8);
+    if (fontSize != null) fSize = fontSize!;
     var listaWidgets = <Widget>[];
 
     if (label != null && label!.isNotEmpty) {
       listaWidgets.add(
         Container(
-          margin: EdgeInsets.only(bottom: responsive.hp(1)),
+          margin: EdgeInsets.only(bottom: responsive.hp(0.5)),
           child: Align(
-            alignment: Alignment.centerLeft,
+            alignment: labelCenter ? Alignment.center : Alignment.centerLeft,
             child: Text(
               label!,
-              style: TextStyle(fontSize: fontSize, color: Colors.black87, fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: fSize, color: Colors.black87, fontWeight: FontWeight.w400),
             ),
           ),
         ),
       );
     }
 
-    Widget errorTextWidget = Container(
-        margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-        child: const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Campo requerido",
-              style: TextStyle(fontFamily: "Roboto", fontWeight: FontWeight.w400, color: Colors.red),
-            )));
-    listaWidgets.add(validator == null ? const SizedBox() : errorTextWidget);
     String keyInputValue = "$key";
     bool existeValor = inputsValues.containsKey(keyInputValue);
     bool existeNodo = inputsFocusNodes.containsKey(keyInputValue);
@@ -91,22 +88,25 @@ class InputSelectWidget extends StatelessWidget {
       Container(
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            color: validator == null ? Colors.indigo.withOpacity(.3) : Colors.red,
-            width: 1,
-          ),
-          //     borderRadius: BorderRadius.circular(20.0),
+            color: Colors.white,
+            border: Border.all(
+              color: validator == null ? AppColors.primaryColor : AppColors.errorColor,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(20)
+            //     borderRadius: BorderRadius.circular(20.0),
+            ),
+        padding: const EdgeInsets.only(
+          left: 10.0,
+          right: 5.0,
         ),
-        padding: const EdgeInsets.only(left: 10.0, right: 5.0, top: 5, bottom: 5),
         width: MediaQuery.of(context).size.width,
         child: DropdownButtonHideUnderline(
             child: DropdownButton<dynamic>(
-          style: TextStyle(
-            fontFamily: "Roboto",
+          style: AppFonts.primaryFont.copyWith(
             fontWeight: FontWeight.w300,
             color: Colors.black,
-            fontSize: fontSize,
+            fontSize: fSize,
           ),
           isExpanded: true,
           value: value,
@@ -127,6 +127,17 @@ class InputSelectWidget extends StatelessWidget {
       ),
     );
 
+    Widget errorTextWidget = Container(
+        margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+        child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              validator == null ? '' : validator!('')!,
+              textAlign: TextAlign.center,
+              style: AppFonts.secondaryFont
+                  .copyWith(fontSize: responsive.dp(1.3), fontWeight: FontWeight.w400, color: AppColors.errorColor),
+            )));
+    listaWidgets.add(validator == null ? const SizedBox() : errorTextWidget);
     return listaWidgets;
   }
 }

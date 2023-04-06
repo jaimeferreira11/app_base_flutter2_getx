@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../data/repositories/local/auth_repository.dart';
 import '../../data/repositories/remote/server_repository.dart';
 import '../../global_widgets/cambiar_password_widget.dart';
+import '../../global_widgets/yes_no_dialog.dart';
 import '../../helpers/notifications/notificacion_service.dart';
 import '../../routes/app_routes.dart';
 import '../../routes/navigator.dart';
@@ -174,5 +175,14 @@ class HomeController extends GetxController {
       nav.back();
       nav.goToAndClean(AppRoutes.login);
     });
+  }
+
+  Future<bool> onWillPop() async {
+    final dialog = await DialogoSiNo().abrirDialogoSiNo('Desea salir de la app?', '');
+    if (dialog == 1) {
+      Get.back();
+      return true;
+    }
+    return false;
   }
 }

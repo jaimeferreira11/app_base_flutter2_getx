@@ -17,23 +17,26 @@ class HomePage extends StatelessWidget {
 
     return GetBuilder<HomeController>(
         builder: (_) => SafeArea(
-              child: Scaffold(
-                appBar: CustomAppBar(
-                  titulo: _.title,
+              child: WillPopScope(
+                onWillPop: _.onWillPop,
+                child: Scaffold(
+                  appBar: CustomAppBar(
+                    titulo: _.title,
+                  ),
+                  bottomNavigationBar: FancyBottomNavigation(
+                    circleColor: AppColors.primaryColor,
+                    inactiveIconColor: AppColors.secondaryColor,
+                    tabs: [
+                      TabData(iconData: FontAwesomeIcons.motorcycle, title: "Asignaciones", onclick: () {}),
+                      TabData(iconData: FontAwesomeIcons.timeline, title: "Histórico"),
+                    ],
+                    initialSelection: _.currentIndex.value,
+                    key: bottomNavigationKey,
+                    onTabChangedListener: _.changePage,
+                  ),
+                  drawer: const CustomDrawer(),
+                  body: _.currentPage,
                 ),
-                bottomNavigationBar: FancyBottomNavigation(
-                  circleColor: AppColors.primaryColor,
-                  inactiveIconColor: AppColors.secondaryColor,
-                  tabs: [
-                    TabData(iconData: FontAwesomeIcons.motorcycle, title: "Asignaciones", onclick: () {}),
-                    TabData(iconData: FontAwesomeIcons.timeline, title: "Histórico"),
-                  ],
-                  initialSelection: _.currentIndex.value,
-                  key: bottomNavigationKey,
-                  onTabChangedListener: _.changePage,
-                ),
-                drawer: const CustomDrawer(),
-                body: _.currentPage,
               ),
             ));
   }

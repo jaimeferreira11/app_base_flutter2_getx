@@ -8,6 +8,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../data/providers/local/cache.dart';
+import '../../global_widgets/warning_view.dart';
 import '../../helpers/utils.dart';
 
 class SplashController extends GetxController {
@@ -22,6 +23,15 @@ class SplashController extends GetxController {
   }
 
   _init() async {
+    final checkIsConnected = await Utils.checkConnection(false);
+    if (!checkIsConnected) {
+      return Get.offAll(() => WarningView(
+            text: 'Su dispositivo no tiene acceso a internet. Favor, verifique su conexión',
+            isButtonRequired: true,
+            buttonText: 'Aceptar',
+            onButtonPressed: () => nav.goToAndClean(AppRoutes.splash),
+          ));
+    }
     Future.delayed(const Duration(seconds: 2), () => nav.goToOff(AppRoutes.login));
     // final resp = await serverRepo.getVersion();
 

@@ -1,7 +1,9 @@
 import 'dart:developer';
+import 'dart:typed_data';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 import 'package:path/path.dart';
@@ -81,5 +83,22 @@ class Utils {
     final locationData = await location.getLocation();
     log('La ubicacion actual es : $locationData');
     return locationData.latitude == null ? null : locationData;
+  }
+
+  static Future<Uint8List> compressImageUnit8List(Uint8List list) async {
+    var result = await FlutterImageCompress.compressWithList(
+      list,
+      minHeight: 1024,
+      minWidth: 1024,
+      quality: 90,
+    );
+    log('List length: ${list.length}');
+    log('List lengthInBytes: ${list.lengthInBytes}');
+    log('Result length: ${result.length}');
+    log('Result lengthInBytes: ${result.lengthInBytes}');
+
+    result.lengthInBytes;
+
+    return result;
   }
 }
