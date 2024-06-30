@@ -2,7 +2,6 @@ import 'package:app_base_flutter2_getx/app/data/repositories/local/auth_reposito
 import 'package:app_base_flutter2_getx/app/data/repositories/remote/server_repository.dart';
 import 'package:app_base_flutter2_getx/app/routes/app_routes.dart';
 import 'package:app_base_flutter2_getx/app/routes/navigator.dart';
-
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -26,13 +25,15 @@ class SplashController extends GetxController {
     final checkIsConnected = await Utils.checkConnection(false);
     if (!checkIsConnected) {
       return Get.offAll(() => WarningView(
-            text: 'Su dispositivo no tiene acceso a internet. Favor, verifique su conexión',
+            text:
+                'Su dispositivo no tiene acceso a internet. Favor, verifique su conexión',
             isButtonRequired: true,
             buttonText: 'Aceptar',
             onButtonPressed: () => nav.goToAndClean(AppRoutes.splash),
           ));
     }
-    Future.delayed(const Duration(seconds: 2), () => nav.goToOff(AppRoutes.login));
+    Future.delayed(
+        const Duration(seconds: 2), () => nav.goToOff(AppRoutes.login));
     // final resp = await serverRepo.getVersion();
 
     // resp.fold((l) => verificarSesion(), (r) async {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'app/config/dependencies/dependency_injection.dart';
 import 'app/my_app.dart';
@@ -23,6 +24,8 @@ void main() async {
     envType: Environment.DEVELOPMENT,
     envConfig: config,
   );
+
+  await dotenv.load(fileName: '.env');
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(

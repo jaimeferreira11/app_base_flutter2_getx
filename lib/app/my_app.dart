@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 
 import '/flavors/build_config.dart';
 import '/flavors/env_config.dart';
+import 'config/theme/app_theme.dart';
 import 'modules/splash/splash_binding.dart';
 import 'modules/splash/splash_page.dart';
 import 'routes/app_pages.dart';
-import 'theme/theme.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       // idioma
       locale: Get.deviceLocale,
       //  supportedLocales: _getSupportedLocal(),
-      theme: buildThemeData(),
+      theme: AppTheme().getTheme(),
       home: const SplashPage(),
       initialBinding: SplashBinding(),
       getPages: AppPage.pages,

@@ -10,10 +10,10 @@ import 'package:path/path.dart';
 
 class Utils {
   static Future<bool> checkConnection(bool toast) async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile) {
-      return true;
-    } else if (connectivityResult == ConnectivityResult.wifi) {
+    List<ConnectivityResult> connectivityResult =
+        await (Connectivity().checkConnectivity());
+
+    if (connectivityResult.isNotEmpty) {
       return true;
     }
 
