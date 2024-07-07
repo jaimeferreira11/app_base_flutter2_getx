@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../theme/colors.dart';
+import 'app_text_styles.dart';
 
 class AppTheme {
   final ThemeData theme = ThemeData();
@@ -11,10 +11,9 @@ class AppTheme {
             theme.colorScheme.copyWith(secondary: AppColors.accentColor),
         primaryColor: AppColors.primaryColor,
         primarySwatch: AppColors.inputColor,
-        textTheme: GoogleFonts.robotoTextTheme().copyWith(
-          //  headline6: TextStyle(color: Colors.white), // @deprecated se usa titleLarge
-          titleLarge: const TextStyle(color: Colors.white), // card header text
-        ),
+        appBarTheme: const AppBarTheme(
+            centerTitle: true, titleTextStyle: TextStyle(fontSize: 16)),
+        scaffoldBackgroundColor: Colors.grey.shade100,
         inputDecorationTheme: InputDecorationTheme(
             focusColor: AppColors.inputColor,
             focusedBorder: OutlineInputBorder(
@@ -27,6 +26,30 @@ class AppTheme {
             foregroundColor: AppColors.inputColor,
           ),
         ),
+        buttonTheme: ButtonThemeData(
+            buttonColor: Colors.blueAccent,
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: AppColors.accentColor)),
+        filledButtonTheme: FilledButtonThemeData(
+            style:
+                FilledButton.styleFrom(backgroundColor: AppColors.accentColor)),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: TextTheme(
+          titleLarge: AppTextStyles.titleLarge,
+          titleMedium: AppTextStyles.titleMedium,
+          titleSmall: AppTextStyles.titleSmall,
+          bodyLarge: AppTextStyles.bodyLarge,
+          bodyMedium: AppTextStyles.bodyMedium,
+          bodySmall: AppTextStyles.bodySmall,
+          labelSmall: AppTextStyles.labelSmall,
+
+          // por defecto
+          displayLarge: ThemeData.light().textTheme.displayLarge,
+          displayMedium: ThemeData.light().textTheme.displayMedium,
+          displaySmall: ThemeData.light().textTheme.displaySmall,
+          headlineMedium: ThemeData.light().textTheme.headlineMedium,
+          headlineSmall: ThemeData.light().textTheme.headlineSmall,
+          labelLarge: ThemeData.light().textTheme.labelLarge,
+        ),
       );
 }

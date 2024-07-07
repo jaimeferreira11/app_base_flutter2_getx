@@ -1,31 +1,28 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'app/config/dependencies/dependency_injection.dart';
 import 'app/my_app.dart';
 import 'flavors/build_config.dart';
 import 'flavors/env_config.dart';
-import 'flavors/enviroment.dart';
 
-void main() async {
-  //WidgetsBinding widgetsBinding =
+Future<void> mainCommon({required EnvConfig env}) async {
   WidgetsFlutterBinding.ensureInitialized();
   await DependecyInjection.init();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  EnvConfig config = EnvConfig(
-    appName: "kirichenko",
-    baseUrl: "http://192.168.100.2:8080/api/",
-    shouldCollectCrashLog: true,
-  );
-
   BuildConfig.instantiate(
-    envType: Environment.DEVELOPMENT,
-    envConfig: config,
+    envType: env.environment,
+    envConfig: env,
   );
 
-  await dotenv.load(fileName: '.env');
+  if (!kIsWeb) {
+    // inti fcm services
+    // await FcmHelper.initFcm();
+    // initialize local notifications service
+    // await AwesomeNotificationsHelper.init();
+  }
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(

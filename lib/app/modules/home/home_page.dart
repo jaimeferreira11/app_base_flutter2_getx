@@ -9,33 +9,43 @@ import 'home_controller.dart';
 import 'local_widgets/custom_drawer.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     GlobalKey bottomNavigationKey = GlobalKey();
 
     return GetBuilder<HomeController>(
-        builder: (_) => SafeArea(
-              child: WillPopScope(
-                onWillPop: _.onWillPop,
+        builder: (controller) => SafeArea(
+              child: PopScope(
+                onPopInvoked: controller.onWillPop,
                 child: Scaffold(
                   appBar: CustomAppBar(
-                    titulo: _.title,
+                    titulo: controller.title,
                   ),
                   bottomNavigationBar: FancyBottomNavigation(
                     circleColor: AppColors.primaryColor,
                     inactiveIconColor: AppColors.secondaryColor,
                     tabs: [
-                      TabData(iconData: FontAwesomeIcons.motorcycle, title: "Asignaciones", onclick: () {}),
-                      TabData(iconData: FontAwesomeIcons.timeline, title: "Histórico"),
+                      TabData(
+                          iconData: FontAwesomeIcons.house,
+                          title: "Inicio",
+                          onclick: () {}),
+                      TabData(
+                          iconData: FontAwesomeIcons.squarePlus,
+                          title: "Auditar"),
+                      TabData(
+                          iconData: FontAwesomeIcons.folderTree,
+                          title: "Realizados"),
+                      TabData(
+                          iconData: FontAwesomeIcons.gear, title: "Ajustes"),
                     ],
-                    initialSelection: _.currentIndex.value,
+                    initialSelection: controller.currentIndex.value,
                     key: bottomNavigationKey,
-                    onTabChangedListener: _.changePage,
+                    onTabChangedListener: controller.changePage,
                   ),
                   drawer: const CustomDrawer(),
-                  body: _.currentPage,
+                  body: controller.currentPage,
                 ),
               ),
             ));

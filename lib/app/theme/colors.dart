@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primaryColor = Colors.blue; //0xff1e7d3e
+  static const primaryColor = Colors.indigo; //0xff1e7d3e
   static const secondaryColor = Colors.blueGrey;
-  static const darkColor = Colors.blueAccent;
-  static const accentColor = Color(0xffef9f24);
+  static const darkColor = Color(0xff303F9F);
+  static const accentColor = Colors.lightBlue;
   static const linkColor = Colors.blue;
-  static const textColor = Color(0xff646464);
+  static const textColor = Colors.black87;
   static const errorColor = Color(0xFFD32F2F);
 
   static const inputColor = MaterialColor(

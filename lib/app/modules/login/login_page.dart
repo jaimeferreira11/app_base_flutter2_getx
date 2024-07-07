@@ -9,7 +9,7 @@ import 'widgets_locales/bg_login.dart';
 import 'widgets_locales/login_form.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +65,24 @@ class LoginPage extends StatelessWidget {
                               child: Container(
                                   margin:
                                       EdgeInsets.only(bottom: responsive.hp(1)),
-                                  child: Text(
-                                    'Arasa IT © 2022',
-                                    style: AppFonts.secondaryFont.copyWith(
-                                        fontSize: responsive.dp(1.8),
-                                        fontWeight: FontWeight.bold),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        'Creado por',
+                                        style: context.textTheme.bodySmall!
+                                            .copyWith(
+                                                color: Colors.grey.shade600,
+                                                fontWeight: FontWeight.w500),
+                                      ),
+                                      Text(
+                                        'Jaime Ferreira © 2024',
+                                        style: context.textTheme.bodySmall!
+                                            .copyWith(
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
                                   ))
                               // Image.asset(
                               //   'assets/images/logo_MB.png',

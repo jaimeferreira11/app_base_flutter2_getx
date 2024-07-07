@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,20 +14,21 @@ class CustomHomeItemWidget extends StatelessWidget {
   final String descripcion;
 
   const CustomHomeItemWidget(
-      {Key? key,
+      {super.key,
       required this.icon,
       this.color = AppColors.primaryColor,
       this.isVertical = true,
       this.descripcion = "",
       required this.title,
-      required this.route})
-      : super(key: key);
+      required this.route});
 
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive.of(context);
 
-    return _CardBackground(route: route, child: isVertical ? _column(responsive) : _row(responsive));
+    return _CardBackground(
+        route: route,
+        child: isVertical ? _column(responsive) : _row(responsive, context));
   }
 
   Widget _column(Responsive responsive) {
@@ -38,7 +37,7 @@ class CustomHomeItemWidget extends StatelessWidget {
       children: [
         CircleAvatar(
           backgroundColor: color,
-          radius: responsive.dp(4),
+          radius: responsive.dp(3),
           child: icon,
         ),
         SizedBox(height: responsive.hp(1.5)),
@@ -48,7 +47,10 @@ class CustomHomeItemWidget extends StatelessWidget {
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyle(color: color, fontWeight: FontWeight.w500, fontSize: responsive.dp(1.8)),
+              style: TextStyle(
+                  color: color,
+                  fontWeight: FontWeight.w500,
+                  fontSize: responsive.dp(1.8)),
             ),
           ),
         )
@@ -56,15 +58,16 @@ class CustomHomeItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _row(Responsive responsive) {
+  Widget _row(Responsive responsive, context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
             backgroundColor: color,
-            radius: responsive.dp(4),
+            radius: responsive.dp(3),
             child: icon,
           ),
           SizedBox(width: responsive.wp(2)),
@@ -75,23 +78,30 @@ class CustomHomeItemWidget extends StatelessWidget {
               children: [
                 FittedBox(
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: responsive.wp(1.5)),
+                    margin:
+                        EdgeInsets.symmetric(horizontal: responsive.wp(1.5)),
                     child: Text(
                       title,
-                      style: TextStyle(color: color, fontWeight: FontWeight.w600, fontSize: responsive.dp(2.1)),
+                      style: TextStyle(
+                          color: color,
+                          fontWeight: FontWeight.w600,
+                          fontSize: responsive.dp(1.6)),
                     ),
                   ),
                 ),
                 SizedBox(height: responsive.hp(1)),
                 if (descripcion.isNotEmpty)
                   Container(
-                      margin: EdgeInsets.symmetric(horizontal: responsive.wp(1.5)),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: responsive.wp(1.5)),
                       child: Center(
                         child: Text(
                           descripcion,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: AppFonts.secondaryFont.copyWith(color: Colors.black54, fontSize: responsive.dp(1.8)),
+                          style: AppFonts.secondaryFont.copyWith(
+                              color: Colors.black54,
+                              fontSize: context.textTheme.title),
                         ),
                       ))
               ],
@@ -107,7 +117,7 @@ class _CardBackground extends StatelessWidget {
   final Widget child;
   final String route;
 
-  const _CardBackground({Key? key, required this.route, required this.child}) : super(key: key);
+  const _CardBackground({super.key, required this.route, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -117,27 +127,27 @@ class _CardBackground extends StatelessWidget {
       onTap: () => Get.toNamed(route),
       child: Container(
         margin: EdgeInsets.only(
-            left: responsive.wp(3), right: responsive.wp(3), top: responsive.hp(1), bottom: responsive.hp(1)),
+            left: responsive.wp(3),
+            right: responsive.wp(3),
+            top: responsive.hp(1),
+            bottom: responsive.hp(1)),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(12),
           boxShadow: const [
             BoxShadow(
-              color: Colors.black45,
-              offset: Offset(0, 1.0), //(x,y)
-
+              color: Colors.black12,
+              offset: Offset(0.2, .9),
               blurRadius: 6.0,
             ),
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: responsive.hp(2)),
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
-              child: child,
-            ),
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: responsive.hp(2)),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(12)),
+            child: child,
           ),
         ),
       ),

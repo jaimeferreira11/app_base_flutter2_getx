@@ -10,7 +10,7 @@ import '../../helpers/notifications/notificacion_service.dart';
 import '../../routes/app_routes.dart';
 import '../../routes/navigator.dart';
 import 'local_widgets/custom_drawer.dart';
-import 'local_widgets/home_menues_view.dart';
+import 'local_widgets/home_view.dart';
 
 class HomeController extends GetxController {
   final nav = Get.find<NavigatorController>();
@@ -30,14 +30,16 @@ class HomeController extends GetxController {
     DrawerItem("Cerrar sesión", FontAwesomeIcons.rightFromBracket)
   ];
 
-  Widget currentPage = const HomeMenuesView();
+  Widget currentPage = const HomeView();
   RxBool buscando = false.obs;
 
   // botom navigation
   final currentIndex = 0.obs;
   List pages = [
-    {"page": Container(), "title": "Asignaciones"},
-    {"page": Container(), "title": "Histórico"}
+    {"page": HomeView(), "title": "Inicio"},
+    {"page": Container(), "title": "Nueva auditoría"},
+    {"page": Container(), "title": "Trabajos realizados"},
+    {"page": Container(), "title": "Ajustes"},
   ];
 
   @override
@@ -98,7 +100,9 @@ class HomeController extends GetxController {
     "newPassword": FocusNode(),
     "repeatNewPassword": FocusNode()
   };
-  bool passwordVisible1 = false, passwordVisible2 = false, passwordVisible3 = false;
+  bool passwordVisible1 = false,
+      passwordVisible2 = false,
+      passwordVisible3 = false;
   RxBool ignore = false.obs;
   RxString errorPass = "".obs;
 
@@ -118,7 +122,9 @@ class HomeController extends GetxController {
   }
 
   cambiarPass() async {
-    if (newPassword == null || repeatNewPassword == null || oldPassword == null) {
+    if (newPassword == null ||
+        repeatNewPassword == null ||
+        oldPassword == null) {
       errorPass.value = "Completa los campos";
       return;
     }
@@ -160,7 +166,11 @@ class HomeController extends GetxController {
         const AlertDialog(
           content: Text("Cerrando sesión...",
               textAlign: TextAlign.center,
-              style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w300, fontSize: 18.0, color: Colors.black)),
+              style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w300,
+                  fontSize: 18.0,
+                  color: Colors.black)),
         ),
         barrierDismissible: false);
     await cerrarSesion();
@@ -177,8 +187,9 @@ class HomeController extends GetxController {
     });
   }
 
-  Future<bool> onWillPop() async {
-    final dialog = await DialogoSiNo().abrirDialogoSiNo('Desea salir de la app?', '');
+  Future<bool> onWillPop(bool didPop) async {
+    final dialog =
+        await DialogoSiNo().abrirDialogoSiNo('Desea salir de la app?', '');
     if (dialog == 1) {
       Get.back();
       return true;

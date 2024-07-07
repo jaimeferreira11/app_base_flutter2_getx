@@ -56,6 +56,26 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        prod {
+            dimension "default"
+            resValue "string", "app_name", "App Base"
+        }
+        homol {
+            dimension "default"
+            // applicationIdSuffix ".homol" // crear el proyecto en firebase para implementar esto
+            resValue "string", "app_name", "App Base Homol"
+            versionNameSuffix ".homol"
+        }
+        dev {
+            dimension "default"
+            // applicationIdSuffix ".dev" // crear el proyecto en firebase para implementar esto
+            resValue "string", "app_name", "App Base Dev"
+            versionNameSuffix ".dev"
+        }
+    }
 }
 
 
